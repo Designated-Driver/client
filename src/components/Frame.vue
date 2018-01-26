@@ -1,8 +1,16 @@
 <template>
   <div class="frame">
-    <router-link to="/login">
-      <span>Login</span>
-    </router-link>
+    <div class="frame-right"> 
+      <router-link to ="/">
+        <span>Home</span>
+      </router-link>  
+      <router-link to="/login">
+        <span>Login</span>
+      </router-link>
+      <router-link to="/signup">
+        <span>Signup</span>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -14,25 +22,28 @@
 <style scoped>
 .frame {
   margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
+  height: 45px;
+  padding: 0 50px;
   background-color: #35495E;
   color: #ffffff;
+  display: flex;
+  justify-content: space-between;
 }
 
-.frame a span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  color: white;
-  width: 100px;
+
+.frame-right {
   height: 100%;
-  border: 1px solid white;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.frame-right a {
+  text-decoration: none;
+}
+
+.frame-right a span {
+  color: white;
 }
 </style>
