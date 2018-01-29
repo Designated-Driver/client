@@ -2,7 +2,7 @@
   <div id="app">
     <frame />
     <main>
-      <img src="./assets/DD.png" alt="Vue.js PWA">
+       <!-- <img src="./assets/DD.png" alt="Vue.js PWA">-->
       <router-view></router-view>
     </main>
   </div>
