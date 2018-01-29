@@ -19,6 +19,21 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
     -->
+
+
+  <div class="frame">
+    <div class="frame-right"> 
+      <router-link to="/login">
+        <span>Login</span>
+      </router-link>
+      <router-link to="/signup">
+        <span>Signup</span>
+      </router-link>
+    </div>
+  </div>
+
+
+
   </div>
 </template>
 
