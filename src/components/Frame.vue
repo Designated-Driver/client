@@ -19,7 +19,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .frame {
   margin: 0;
   height: 45px;

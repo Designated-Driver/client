@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style>
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 body {
   margin: 0;
 }
