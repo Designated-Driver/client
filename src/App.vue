@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <frame />
-    <main>
+    <div class="router-view">
        <!-- <img src="./assets/DD.png" alt="Vue.js PWA">-->
       <router-view></router-view>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -27,10 +27,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  position: relative;
 }
 
-main {
-  text-align: center;
-  margin-top: 40px;
+.router-view {
+  padding-top: 45px;
+  height: calc(100vh - 45px);
 }
 </style>
