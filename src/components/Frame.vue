@@ -18,7 +18,7 @@
   export default {
     data () {
       return {
-        showSidebar: true
+        showSidebar: false
       }
     },
     components: { Sidebar },
