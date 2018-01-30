@@ -10,6 +10,7 @@
       </div>
     </div>
     <sidebar @closeSidebar="closeSidebar()" v-if="showSidebar"/>
+    <v-touch v-on:panright="showSidebar = true" class="frame-swipe"></v-touch>
   </div>
 </template>
 
@@ -24,7 +25,6 @@
     components: { Sidebar },
     methods: {
       closeSidebar () {
-        console.log('closing sidebar')
         this.showSidebar = false
       }
     }
@@ -55,4 +55,12 @@
     padding-right: 10px;
   }
 }
+
+  .frame-swipe {
+    position: absolute;
+    color: black;
+    height: 100vh;
+    width: 1px;
+    z-index: 3;
+  }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <transition name="sidebar">
-    <div class="sidebar">
+    <v-touch v-on:panleft="closeSidebar()" class="sidebar">
       <div class="sidebar-nav">
         <div class="sidebar-close" @click="closeSidebar()">
           <i class="fa fa-times fa-lg" aria-hidden="true"></i>        
         </div>
-        <div class="sidebar-content">
+        <div class="sidebar-content" @click="closeSidebar()">
           <router-link to ="/">
             <span>Home</span>
           </router-link> 
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="sidebar-empty" @click="closeSidebar()"></div>
-    </div>
+    </v-touch>
   </transition>
 </template>
 
