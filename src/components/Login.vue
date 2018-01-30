@@ -22,10 +22,6 @@
 
 <style lang="scss" scoped>
 .login {
-  width: 100vw;
-  height: 100%; 
-  background: black;
-
   .box{
     width: 80%;
     padding: 0 10%;

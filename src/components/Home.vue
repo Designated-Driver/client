@@ -26,15 +26,15 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss">
 .home {
-  background: black;
-  height: 100%;
-  width: 100vw;
-}
-
-
-a {
   color: white;
+  .frame {
+    .frame-right {
+      a {
+        color: white;
+      }
+    }
+  }
 }
 </style>

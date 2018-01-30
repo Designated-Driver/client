@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <frame />
-    <div class="router-view">
        <!-- <img src="./assets/DD.png" alt="Vue.js PWA">-->
-      <router-view></router-view>
-    </div>
+    <router-view class="router-view"></router-view>
   </div>
 </template>
 
@@ -18,9 +16,7 @@ export default {
 
 <style>
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-body {
-  margin: 0;
-}
+@import url('https://meyerweb.com/eric/tools/css/reset/reset.css');
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -28,10 +24,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
 
 .router-view {
-  padding-top: 45px;
-  height: calc(100vh - 45px);
+  height: calc(100% - 45px);
+  width: 100vw;
+  padding-top: 45px;  
+  background: black;
+  color: white;
+
 }
 </style>

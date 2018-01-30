@@ -34,9 +34,10 @@
 <style lang="scss" scoped>
 .frame {
   position: absolute;
-  height: 45px;
+  height: 46px;
   width: 100%;
-  background-color: #35495E;
+  // background-color: #35495E;
+  background: black;
   color: #ffffff;
   display: flex;
   justify-content: space-between;
