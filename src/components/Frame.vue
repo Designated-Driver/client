@@ -9,10 +9,7 @@
         DesignatedDriver
       </div>
     </div>
-    <transition name="sidebar">
-    
-    </transition>
-    <sidebar v-if="showSidebar"/>
+    <sidebar @closeSidebar="closeSidebar()" v-if="showSidebar"/>
   </div>
 </template>
 
@@ -21,15 +18,22 @@
   export default {
     data () {
       return {
-        showSidebar: false
+        showSidebar: true
       }
     },
-    components: { Sidebar }
+    components: { Sidebar },
+    methods: {
+      closeSidebar () {
+        console.log('closing sidebar')
+        this.showSidebar = false
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
 .frame {
+  position: absolute;
   height: 45px;
   width: 100%;
   background-color: #35495E;

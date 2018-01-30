@@ -27,9 +27,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  position: relative;
 }
 
 .router-view {
+  padding-top: 45px;
   height: calc(100vh - 45px);
 }
 </style>

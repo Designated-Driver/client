@@ -1,28 +1,38 @@
 <template>
-<transition name="sidebar">
-  <div class="sidebar">
-    <div class="sidebar-nav"> 
-      <router-link to ="/">
-        <span>Home</span>
-      </router-link> 
-      <router-link to ="/about">
-        <span>About</span>
-      </router-link>  
-      <router-link to="/login">
-        <span>Login</span>
-      </router-link>
-      <router-link to="/signup">
-        <span>Signup</span>
-      </router-link>
+  <transition name="sidebar">
+    <div class="sidebar">
+      <div class="sidebar-nav">
+        <div class="sidebar-close" @click="closeSidebar()">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>        
+        </div>
+        <div class="sidebar-content">
+          <router-link to ="/">
+            <span>Home</span>
+          </router-link> 
+          <router-link to ="/about">
+            <span>About</span>
+          </router-link>  
+          <router-link to="/login">
+            <span>Login</span>
+          </router-link>
+          <router-link to="/signup">
+            <span>Signup</span>
+          </router-link>
+        </div>
+      </div>
+      <div class="sidebar-empty" @click="closeSidebar()"></div>
     </div>
-  </div>
-</transition>
-  
+  </transition>
 </template>
 
 <script>
   export default {
-    name: 'Sidebar'
+    name: 'Sidebar',
+    methods: {
+      closeSidebar () {
+        this.$emit('closeSidebar')
+      }
+    }
   }
 </script>
 
@@ -30,28 +40,53 @@
 .sidebar {
   position: absolute;
   height: 100vh;
-  width: 66vw;
-  background-color: #35495E;
+  width: 100vw;
   z-index: 1;
+  display: flex;
 
   .sidebar-nav {
-    width: 80%;
-    height: 50%;
+    width: 66%;
+    height: 100%;
+    background-color: #35495E;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 0 10%;
 
-    a {
-      height: 40px;
-      display: flex;
-      align-items: flex-end;
-      text-decoration: none;
+    .sidebar-close {
+      height: 45px;
 
-      span {
+      >i {
+        width: 45px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: white;
       }
     }
+
+    .sidebar-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      a {
+        height: 40px;
+        padding: 0 10%;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .sidebar-empty {
+    width: 34%;
+    filter: brightness(0%);
   }
 }
 
