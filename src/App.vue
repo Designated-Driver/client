@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <frame />
-    <main>
+    <div class="router-view">
        <!-- <img src="./assets/DD.png" alt="Vue.js PWA">-->
       <router-view></router-view>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -29,8 +29,7 @@ body {
   color: #2c3e50;
 }
 
-main {
-  text-align: center;
-  margin-top: 40px;
+.router-view {
+  height: calc(100vh - 45px);
 }
 </style>
