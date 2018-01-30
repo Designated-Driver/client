@@ -1,6 +1,5 @@
 <template>
   <div class="login">
-    Log in
     <div class="box">
       Username:
       <input type="text" name="user">
@@ -25,13 +24,13 @@
 .login {
   width: 100vw;
   height: 100%; 
-
+  background: black;
 
   .box{
     width: 80%;
     padding: 0 10%;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     
     input{
       max-width: 250px;
