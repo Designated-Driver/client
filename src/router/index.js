@@ -5,6 +5,7 @@ import About from '@/components/About'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Submit from '@/components/Submit'
+import Ccinfo from '@/components/Ccinfo'
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +34,11 @@ export default new Router({
       path: '/submit',
       name: 'Submit',
       component: Submit
+    },
+    {
+      path: '/ccinfo',
+      name: 'cinfo',
+      component: Ccinfo
     }
   ]
 })
