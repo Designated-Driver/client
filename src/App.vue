@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <frame />
-       <!-- <img src="./assets/DD.png" alt="Vue.js PWA">-->
     <router-view class="router-view"></router-view>
   </div>
 </template>
 
 <script>
-import Frame from './components/Frame'
 export default {
-  name: 'app',
-  components: { Frame }
+  name: 'app'
 }
 </script>
 
@@ -31,11 +27,9 @@ export default {
 }
 
 .router-view {
-  height: calc(100% - 45px);
-  width: 100vw;
-  padding-top: 45px;  
-  background: black;
-  color: white;
-
+  height: 100vh;
+  width: 100vw;  
+  background: #ececec;
+  color: black;
 }
 </style>
