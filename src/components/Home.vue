@@ -15,7 +15,7 @@
         <div class="signup" v-else-if="showSignUp">
           <h1>Create An Account</h1>
           <form @submit.prevent="submitSignUp()">
-            <div>
+            <div class="signup-form">
               <input v-model="fullName" type="text" placeholder="Full Name">              
               <input v-model="email" type="text" placeholder="Email Address">
               <input v-model="password" type="password" placeholder="Password">
@@ -33,7 +33,7 @@ export default {
   name: 'home',
   data () {
     return {
-      showSignUp: true,
+      showSignUp: false,
       showLogIn: false,
       email: '',
       password: '',
@@ -118,9 +118,18 @@ export default {
         // border: 1px solid black;
         flex-grow: 1;
         position: relative;
-        div {
-          margin-top: 20px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        .signup-form {
+          // height: 100%;
+          margin-top: 10px;
           height: 175px;
+          max-height: calc(100% - 60px);
+          width: 100%;
+          // border: 1px solid black;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -138,9 +147,9 @@ export default {
 
         button {
           position: absolute;
-          bottom: 20px;
-          right: 20px;
-          border: 2px solid black;
+          bottom: 0px;
+          right: 0px;
+          // border: 2px solid black;
           background: white;
           width: 120px;
           height: 35px;
