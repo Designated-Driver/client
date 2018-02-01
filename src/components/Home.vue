@@ -10,15 +10,23 @@
       </template>
       <template v-else>
         <div class="login" v-if="showLogIn">
-          This is the login
+          <h1>Log in</h1>
+          <form @submit.prevent="submitLogIn()">
+            <div>             
+              <input v-model="email" type="text" placeholder="Email Address">
+              <input v-model="password" type="password" placeholder="Password">
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
         <div class="signup" v-else-if="showSignUp">
           <h1>Create An Account</h1>
           <form @submit.prevent="submitSignUp()">
-            <div class="signup-form">
+            <div>
               <input v-model="fullName" type="text" placeholder="Full Name">              
               <input v-model="email" type="text" placeholder="Email Address">
               <input v-model="password" type="password" placeholder="Password">
+              
             </div>
             <button type="submit">Submit</button>
           </form>
@@ -49,14 +57,30 @@ export default {
     },
     submitSignUp () {
       console.log('you submit the form')
-      if (!this.email.includes('@')) {
-        console.log('this email doesnt contain @')
+      if (!this.email.includes('@') || !this.email.includes('.com')) {
+        console.log('invalid email')
         // show on UI the email needs to contain @
+      } else if (!(this.fullName.length >= 1)) {
+        console.log('no name')
+      } else if (!(this.password.length >= 7)) {
+        console.log('password not greater or equal to 7')
+      } else {
+        this.showSignUp = false
       }
-      this.showSignUp = false
+      console.log(this.password.length)
       // catch other conditions
       // otherwise
       // submit to firebase auth
+    },
+    submitLogIn () {
+      if (!this.email.includes('@') && !this.email.includes('.com')) {
+        console.log('invalid email')
+        // show on UI the email needs to contain @
+      } else if (!(this.password.length >= 7)) {
+        console.log('invalid password')
+      } else {
+        this.showLogIn = false
+      }
     }
   }
 }
@@ -97,6 +121,60 @@ export default {
       align-items: center;
       border: 2px solid black;
     }
+    .login{
+      width: 90%;
+      height: 90%;
+      // border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      
+      h1 {
+        // border: 1px solid black;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+      }
+
+      form {
+        //border: 1px solid black;
+        flex-grow: 1;
+        position: relative;
+        div {
+          //border: 1px solid black;
+          margin-top: 20px;
+          height: 120px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+        
+          
+
+          input {
+            width: 80%;
+            border: 2px solid gray;
+            background: white;
+            height: 40%;
+            font-size: 100%;
+            padding-left: 10px;
+            
+          }
+        }
+  
+        button {
+          position: absolute;
+          bottom: 10px;
+          right: 20px;
+          border: 2px solid black;
+          background: white;
+          width: 120px;
+          height: 35px;
+        }
+      }
+
+    }
 
     .signup {
       width: 90%;
@@ -118,18 +196,9 @@ export default {
         // border: 1px solid black;
         flex-grow: 1;
         position: relative;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-
-        .signup-form {
-          // height: 100%;
-          margin-top: 10px;
+        div {
+          margin-top: 20px;
           height: 175px;
-          max-height: calc(100% - 60px);
-          width: 100%;
-          // border: 1px solid black;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -147,9 +216,9 @@ export default {
 
         button {
           position: absolute;
-          bottom: 0px;
-          right: 0px;
-          // border: 2px solid black;
+          bottom: 10px;
+          right: 20px;
+          border: 2px solid black;
           background: white;
           width: 120px;
           height: 35px;
