@@ -154,6 +154,60 @@ export default {
       align-items: center;
       border: 2px solid black;
     }
+    .login{
+      width: 90%;
+      height: 90%;
+      // border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      
+      h1 {
+        // border: 1px solid black;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+      }
+
+      form {
+        //border: 1px solid black;
+        flex-grow: 1;
+        position: relative;
+        div {
+          //border: 1px solid black;
+          margin-top: 20px;
+          height: 120px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+        
+          
+
+          input {
+            width: 80%;
+            border: 2px solid gray;
+            background: white;
+            height: 40%;
+            font-size: 100%;
+            padding-left: 10px;
+            
+          }
+        }
+  
+        button {
+          position: absolute;
+          bottom: 10px;
+          right: 20px;
+          border: 2px solid black;
+          background: white;
+          width: 120px;
+          height: 35px;
+        }
+      }
+
+    }
 
     .signup, .login {
       width: 90%;
