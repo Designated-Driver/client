@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { createStore } from './store'
+const store = createStore()
 var VueTouch = require('vue-touch')
 
 Vue.config.productionTip = false
@@ -11,6 +13,7 @@ Vue.use(VueTouch, {name: 'v-touch'})
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
