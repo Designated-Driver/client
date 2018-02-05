@@ -76,7 +76,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'authenticateUser'
+      'authenticateUser',
+      'loginUser'
     ]),
     clickLogin () {
       this.showLogIn = true
@@ -87,6 +88,9 @@ export default {
     closeToolbar () {
       this.showLogIn = false
       this.showSignUp = false
+      this.email = ''
+      this.password = ''
+      this.fullName = ''
     },
     submitLogin () {
       if (!this.email || !this.password) {
@@ -94,7 +98,15 @@ export default {
       } else if (!this.email.includes('@')) {
         console.log('this email doesnt contain @')
       } else {
-        this.showLogIn = false
+        this.showSpinner = true
+        this.loginUser({'email': this.email, 'password': this.password}).then(() => {
+          this.showLogin = false
+          this.showSpinner = false
+          this.email = ''
+          this.password = ''
+        }).catch(err => {
+          console.log(err)
+        })
       }
     },
     submitSignUp () {

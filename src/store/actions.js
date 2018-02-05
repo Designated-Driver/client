@@ -8,5 +8,13 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  loginUser: function ({commit, dispatch, state}, payload) {
+    return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
+      console.log('you have signed in')
+      commit('SET_AUTH_STATE')
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
