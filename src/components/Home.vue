@@ -100,7 +100,7 @@ export default {
       } else {
         this.showSpinner = true
         this.loginUser({'email': this.email, 'password': this.password}).then(() => {
-          this.showLogin = false
+          this.showLogIn = false
           this.showSpinner = false
           this.email = ''
           this.password = ''
