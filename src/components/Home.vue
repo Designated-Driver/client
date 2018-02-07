@@ -2,7 +2,7 @@
   <div class="home">
     <div class="main">
       <gmap-map
-        :center="{lat:36.974117, lng:-122.030796}"
+        :center="mapData.currentPosition"
         :zoom="14"
         :options="{fullscreenControl: false, mapTypeControl: false, zoomControl: false, streetViewControl: false, styles: [
           {
@@ -204,21 +204,21 @@
         >
         <gmap-marker
           :key="index"
-          v-for="(m, index) in markers"
+          v-for="(m, index) in mapData.markers"
           :position="m.position"
           :clickable="true"
           @click="center=m.position">
         </gmap-marker>
       </gmap-map>
     </div>
-    <div class="toolbar" :style="{'height': (showLogIn || showSignUp) ? '50vh' : '10vh' }">
+    <div class="toolbar" :style="{'height': (toolbar.showLogIn || toolbar.showSignUp) ? '50vh' : '10vh' }">
       <template v-if="!getAuthState">
-        <template v-if="(!showLogIn && !showSignUp)">
+        <template v-if="(!toolbar.showLogIn && !toolbar.showSignUp)">
           <span @click="clickLogin">Login</span>
           <span @click="clickSignUp">Signup</span>
         </template>
         <template v-else>
-          <div class="login" v-if="showLogIn">
+          <div class="login" v-if="toolbar.showLogIn">
             <template v-if="!showSpinner">
               <div class="close-toolbar" @click="closeToolbar()">
                 <i class="fa fa-times"></i>
@@ -226,15 +226,15 @@
               <h1>Login</h1>
               <form @submit.prevent="submitLogin()">
                 <div class="vue-form login-form">
-                  <input v-model="email" type="text" placeholder="Email Address">
-                  <input v-model="password" type="password" placeholder="Password">
+                  <input v-model="auth.email" type="text" placeholder="Email Address">
+                  <input v-model="auth.password" type="auth.password" placeholder="Password">
                 </div>
                 <button type="submit">Login</button>
               </form>
             </template>
             <ring-loader :loading="showSpinner" class="spinner" v-else></ring-loader>
           </div>
-          <div class="signup" v-else-if="showSignUp">
+          <div class="signup" v-else-if="toolbar.showSignUp">
             <template v-if="!showSpinner">
               <div class="close-toolbar" @click="closeToolbar()">
                 <i class="fa fa-times"></i>
@@ -242,9 +242,9 @@
               <h1>Create An Account</h1>
               <form @submit.prevent="submitSignUp()">
                 <div class="vue-form signup-form">
-                  <input v-model="fullName" type="text" placeholder="Full Name">              
-                  <input v-model="email" type="text" placeholder="Email Address">
-                  <input v-model="password" type="password" placeholder="Password">
+                  <input v-model="auth.fullName" type="text" placeholder="Full Name">              
+                  <input v-model="auth.email" type="text" placeholder="Email Address">
+                  <input v-model="auth.password" type="auth.password" placeholder="Password">
                 </div>
                 <button type="submit">Sign Up</button>
               </form>
@@ -272,17 +272,27 @@ export default {
       'getAuthState'
     ])
   },
+  mounted () {
+    this.getlocation()
+  },
   data () {
     return {
-      showSignUp: false,
-      showLogIn: false,
-      email: '',
-      password: '',
-      fullName: '',
+      toolbar: {
+        showSignUp: false,
+        showLogIn: false
+      },
+      auth: {
+        email: '',
+        password: '',
+        fullName: ''
+      },
       showSpinner: false,
-      markers: [{
-        position: {lat: 36.984117, lng: -122.030796}
-      }]
+      mapData: {
+        currentPosition: {lat: 40.696514, lng: -73.997872},
+        markers: [
+          // {position: {lat: 36.984117, lng: -122.030796}}
+        ]
+      }
     }
   },
   methods: {
@@ -290,40 +300,52 @@ export default {
       'authenticateUser'
     ]),
     clickLogin () {
-      this.showLogIn = true
+      this.toolbar.showLogIn = true
     },
     clickSignUp () {
-      this.showSignUp = true
+      this.toolbar.showSignUp = true
     },
     closeToolbar () {
-      this.showLogIn = false
-      this.showSignUp = false
+      this.toolbar.showLogIn = false
+      this.toolbar.showSignUp = false
     },
     submitLogin () {
-      if (!this.email || !this.password) {
+      if (!this.auth.email || !this.auth.password) {
         console.log('one of these fields are incomplete')
-      } else if (!this.email.includes('@')) {
-        console.log('this email doesnt contain @')
+      } else if (!this.auth.email.includes('@')) {
+        console.log('this auth.email doesnt contain @')
       } else {
-        this.showLogIn = false
+        this.toolbar.showLogIn = false
       }
     },
     submitSignUp () {
-      if (!this.email || !this.password || !this.fullName) {
+      if (!this.auth.email || !this.auth.password || !this.auth.fullName) {
         console.log('one of these fields are incomplete')
-      } else if (!this.email.includes('@')) {
-        console.log('this email doesnt contain @')
+      } else if (!this.auth.email.includes('@')) {
+        console.log('this auth.email doesnt contain @')
       } else {
         this.showSpinner = true
-        this.authenticateUser({'email': this.email, 'password': this.password}).then(() => {
-          this.showSignUp = false
+        this.authenticateUser({'auth.email': this.auth.email, 'auth.password': this.auth.password}).then(() => {
+          this.toolbar.showSignUp = false
           this.showSpinner = false
-          this.email = ''
-          this.password = ''
-          this.fullName = ''
+          this.auth.email = ''
+          this.auth.password = ''
+          this.auth.fullName = ''
         }).catch(err => {
           console.log(err)
         })
+      }
+    },
+    getlocation () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.mapData.currentPosition = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        })
+      } else {
+        console.log('this browser doesnt support geolocation and probably shouldnt be used')
       }
     }
   }
@@ -404,8 +426,7 @@ export default {
             background: white;
             height: 40%;
             font-size: 100%;
-            padding-left: 10px;
-            
+            padding-left: 10px;  
           }
         }
   
@@ -419,7 +440,6 @@ export default {
           height: 35px;
         }
       }
-
     }
 
     .signup, .login {
@@ -434,6 +454,7 @@ export default {
         justify-content: center;
         align-items: center;
         font-size: 32px;
+        color: white;
       }
 
       form {
@@ -502,7 +523,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid gray;
-  border-radius: 50%;
+  color: white;
 }
 </style>
