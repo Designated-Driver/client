@@ -4,11 +4,17 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { createStore } from './store'
+import * as VueGoogleMaps from 'vue2-google-maps'
 const store = createStore()
 const VueTouch = require('vue-touch')
 
 Vue.config.productionTip = false
 Vue.use(VueTouch, {name: 'v-touch'})
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDDPRYo6aPBCYretfWzTaEliHbQu5VErMw'
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({
