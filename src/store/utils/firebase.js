@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const firebase = require('firebase')
+=======
+var firebase = require('firebase')
+>>>>>>> auth
 
 var config = {
   apiKey: 'AIzaSyCNtTlfQ0rbHqcrKCCuOJL9l8AuzPXx_58',
