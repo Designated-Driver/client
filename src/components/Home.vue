@@ -4,8 +4,212 @@
       <gmap-map
         :center="{lat:36.974117, lng:-122.030796}"
         :zoom="14"
+        :options="{fullscreenControl: false, mapTypeControl: false, zoomControl: false, streetViewControl: false, styles: [
+          {
+            'elementType': 'geometry',
+            'stylers': [
+              {
+                'color': '#242f3e'
+              }
+            ]
+          },
+          {
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#746855'
+              }
+            ]
+          },
+          {
+            'elementType': 'labels.text.stroke',
+            'stylers': [
+              {
+                'color': '#242f3e'
+              }
+            ]
+          },
+          {
+            'featureType': 'administrative.locality',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#d59563'
+              }
+            ]
+          },
+          {
+            'featureType': 'poi',
+            'elementType': 'labels.text',
+            'stylers': [
+              {
+                'visibility': 'off'
+              }
+            ]
+          },
+          {
+            'featureType': 'poi',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#d59563'
+              }
+            ]
+          },
+          {
+            'featureType': 'poi.business',
+            'stylers': [
+              {
+                'visibility': 'off'
+              }
+            ]
+          },
+          {
+            'featureType': 'poi.park',
+            'elementType': 'geometry',
+            'stylers': [
+              {
+                'color': '#263c3f'
+              }
+            ]
+          },
+          {
+            'featureType': 'poi.park',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#6b9a76'
+              }
+            ]
+          },
+          {
+            'featureType': 'road',
+            'elementType': 'geometry',
+            'stylers': [
+              {
+                'color': '#38414e'
+              }
+            ]
+          },
+          {
+            'featureType': 'road',
+            'elementType': 'geometry.stroke',
+            'stylers': [
+              {
+                'color': '#212a37'
+              }
+            ]
+          },
+          {
+            'featureType': 'road',
+            'elementType': 'labels.icon',
+            'stylers': [
+              {
+                'visibility': 'off'
+              }
+            ]
+          },
+          {
+            'featureType': 'road',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#9ca5b3'
+              }
+            ]
+          },
+          {
+            'featureType': 'road.highway',
+            'elementType': 'geometry',
+            'stylers': [
+              {
+                'color': '#746855'
+              }
+            ]
+          },
+          {
+            'featureType': 'road.highway',
+            'elementType': 'geometry.stroke',
+            'stylers': [
+              {
+                'color': '#1f2835'
+              }
+            ]
+          },
+          {
+            'featureType': 'road.highway',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#f3d19c'
+              }
+            ]
+          },
+          {
+            'featureType': 'transit',
+            'stylers': [
+              {
+                'visibility': 'off'
+              }
+            ]
+          },
+          {
+            'featureType': 'transit',
+            'elementType': 'geometry',
+            'stylers': [
+              {
+                'color': '#2f3948'
+              }
+            ]
+          },
+          {
+            'featureType': 'transit.station',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#d59563'
+              }
+            ]
+          },
+          {
+            'featureType': 'water',
+            'elementType': 'geometry',
+            'stylers': [
+              {
+                'color': '#17263c'
+              }
+            ]
+          },
+          {
+            'featureType': 'water',
+            'elementType': 'labels.text.fill',
+            'stylers': [
+              {
+                'color': '#515c6d'
+              }
+            ]
+          },
+          {
+            'featureType': 'water',
+            'elementType': 'labels.text.stroke',
+            'stylers': [
+              {
+                'color': '#17263c'
+              }
+            ]
+          }
+        ]
+        }"
         style="width: 100%; height: 100%;"
-      ></gmap-map>
+        >
+        <gmap-marker
+          :key="index"
+          v-for="(m, index) in markers"
+          :position="m.position"
+          :clickable="true"
+          @click="center=m.position">
+        </gmap-marker>
+      </gmap-map>
     </div>
     <div class="toolbar" :style="{'height': (showLogIn || showSignUp) ? '50vh' : '10vh' }">
       <template v-if="!getAuthState">
@@ -75,7 +279,10 @@ export default {
       email: '',
       password: '',
       fullName: '',
-      showSpinner: false
+      showSpinner: false,
+      markers: [{
+        position: {lat: 36.984117, lng: -122.030796}
+      }]
     }
   },
   methods: {
@@ -140,8 +347,8 @@ export default {
   .toolbar {
     position: absolute;
     bottom: 0px;
-    border-top: 2px solid black;
-    background: white;
+    // border-top: 2px solid black;
+    background: #38414e;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -156,8 +363,10 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 2px solid black;
+      border: 2px solid gray;
+      color: white;
     }
+
     .login{
       width: 90%;
       height: 90%;
