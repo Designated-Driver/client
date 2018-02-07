@@ -1,5 +1,5 @@
 export default {
   getAuthState: function (state) {
-    return state.userAuth
+    return state.authState
   }
 }
