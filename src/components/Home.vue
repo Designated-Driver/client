@@ -317,11 +317,11 @@ export default {
         console.log('this auth.email doesnt contain @')
       } else {
         this.showSpinner = true
-        this.loginUser({'email': this.email, 'password': this.password}).then(() => {
-          this.showLogIn = false
+        this.loginUser({'email': this.auth.email, 'password': this.auth.password}).then(() => {
+          this.toolbar.showLogIn = false
           this.showSpinner = false
-          this.email = ''
-          this.password = ''
+          this.auth.email = ''
+          this.auth.password = ''
         }).catch(err => {
           console.log(err)
         })
@@ -334,7 +334,7 @@ export default {
         console.log('this auth.email doesnt contain @')
       } else {
         this.showSpinner = true
-        this.authenticateUser({'auth.email': this.auth.email, 'auth.password': this.auth.password}).then(() => {
+        this.authenticateUser({'email': this.auth.email, 'password': this.auth.password}).then(() => {
           this.toolbar.showSignUp = false
           this.showSpinner = false
           this.auth.email = ''
