@@ -227,7 +227,7 @@
               <form @submit.prevent="submitLogin()">
                 <div class="vue-form login-form">
                   <input v-model="auth.email" type="text" placeholder="Email Address">
-                  <input v-model="auth.password" type="password" placeholder="Password">
+                  <input v-model="auth.password" type="auth.password" placeholder="Password">
                 </div>
                 <button type="submit">Login</button>
               </form>
@@ -244,7 +244,7 @@
                 <div class="vue-form signup-form">
                   <input v-model="auth.fullName" type="text" placeholder="Full Name">              
                   <input v-model="auth.email" type="text" placeholder="Email Address">
-                  <input v-model="auth.password" type="password" placeholder="Password">
+                  <input v-model="auth.password" type="auth.password" placeholder="Password">
                 </div>
                 <button type="submit">Sign Up</button>
               </form>
@@ -317,7 +317,7 @@ export default {
         console.log('this auth.email doesnt contain @')
       } else {
         this.showSpinner = true
-        this.loginUser({'email': this.auth.email, 'password': this.auth.password}).then(() => {
+        this.loginUser({'email': this.email, 'password': this.password}).then(() => {
           this.showLogIn = false
           this.showSpinner = false
           this.email = ''
@@ -334,7 +334,7 @@ export default {
         console.log('this auth.email doesnt contain @')
       } else {
         this.showSpinner = true
-        this.authenticateUser({'email': this.auth.email, 'password': this.auth.password}).then(() => {
+        this.authenticateUser({'auth.email': this.auth.email, 'auth.password': this.auth.password}).then(() => {
           this.toolbar.showSignUp = false
           this.showSpinner = false
           this.auth.email = ''
