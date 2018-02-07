@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <div class="main">
-      This is the main map.
+      <gmap-map
+        :center="{lat:36.974117, lng:-122.030796}"
+        :zoom="14"
+        style="width: 100%; height: 100%;"
+      ></gmap-map>
     </div>
     <div class="toolbar" :style="{'height': (showLogIn || showSignUp) ? '50vh' : '10vh' }">
       <template v-if="!getAuthState">
