@@ -11,7 +11,12 @@
             <input v-model="auth.email" type="text" placeholder="Email Address">
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
-          <button type="submit">Login</button>
+          <div class="button">
+            <router-link to="about">        
+              <span>About This App</span>
+            </router-link>
+            <button type="submit">Sign Up</button>
+          </div>
         </form>
       </template>
       <ring-loader :loading="showSpinner" class="spinner" v-else></ring-loader>
@@ -22,7 +27,7 @@
           <i class="fa fa-times"></i>
         </div>
         <h1>Create An Account</h1>
-        <form @submit.prevent="$emit('submitSignUp')">
+        <form @submit.prevent="$emit('heyParentDoSignUp')">
           <div class="account-type">
             <span>
               <input id="riderCheckBox" name="accountType" value="rider" v-model="auth.accountType" type="radio">
@@ -38,7 +43,12 @@
             <input v-model="auth.email" type="text" placeholder="Email Address">
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
-          <button type="submit">Sign Up</button>
+          <div class="button">
+            <router-link to="about">        
+              <span>About This App</span>
+            </router-link>
+            <button type="submit">Sign Up</button>
+          </div>
         </form>
       </template>
       <ring-loader :loading="showSpinner" class="spinner" v-else></ring-loader>
@@ -90,6 +100,11 @@
       font-size: 32px;
     }
 
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
     form {
       flex-grow: 1;
       position: relative;
@@ -135,13 +150,22 @@
         height: 100px;
       }
 
-      button {
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-        background: white;
-        width: 120px;
-        height: 35px;
+      .button {
+        display: flex;
+        justify-content: space-between;
+        width: 85%;
+
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        button {
+          background: white;
+          width: 120px;
+          height: 35px;
+        }
       }
     }
 
