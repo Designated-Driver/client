@@ -3,7 +3,10 @@ import { firebase } from './utils/firebase'
 export default {
   authenticateUser: function ({commit, dispatch, state}, payload) {
     return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {
-      console.log('user has been created')
+      firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
+        'fullName': payload.fullName,
+        'accountType': payload.accountType
+      })
       commit('SET_AUTH_STATE')
     }).catch(err => {
       console.log(err)

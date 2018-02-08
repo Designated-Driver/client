@@ -23,6 +23,16 @@
         </div>
         <h1>Create An Account</h1>
         <form @submit.prevent="$emit('submitSignUp')">
+          <div class="account-type">
+            <span>
+              <input id="riderCheckBox" name="accountType" value="rider" v-model="auth.accountType" type="radio">
+              <label for="riderCheckBox">Rider</label>
+            </span>
+            <span>
+              <input id="driverCheckBox" name="accountType" value="driver" v-model="auth.accountType" type="radio">
+              <label for="driverCheckBox">Driver</label>
+            </span>
+          </div>
           <div class="vue-form signup-form">
             <input v-model="auth.fullName" type="text" placeholder="Full Name">              
             <input v-model="auth.email" type="text" placeholder="Email Address">
@@ -37,14 +47,11 @@
 </template>
 
 <script>
+  import RingLoader from 'vue-spinner/src/RingLoader'
   export default {
     name: 'AuthFlow',
-    data () {
-      return {
-        showSpinner: false
-      }
-    },
-    props: [ 'auth', 'toolbar' ]
+    components: { RingLoader },
+    props: [ 'auth', 'toolbar', 'showSpinner' ]
   }
 </script>
 
@@ -88,21 +95,30 @@
       position: relative;
       height: 100%;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      .account-type {
+        // height: 20px;
+        width: 80%;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
+      }
 
       .vue-form {
         margin-bottom: 15px;
         height: 180px;
         max-height: calc(100% - 60px);
-        width: 100%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
 
         input {
-          width: 80%;
+          width: 100%;
           border: 2px solid gray;
           background: white;
           height: 40px;

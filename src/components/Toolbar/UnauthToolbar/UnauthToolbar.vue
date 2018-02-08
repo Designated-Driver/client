@@ -9,6 +9,7 @@
       v-else
       :toolbar="toolbar" 
       :auth="auth"
+      :showSpinner="showSpinner"
       @submitLogin="submitLogin"
       @submitSignUp="submitSignUp"
       @closeToolbar="closeToolbar"
@@ -32,8 +33,10 @@
         auth: {
           email: '',
           password: '',
-          fullName: ''
-        }
+          fullName: '',
+          accountType: 'rider'
+        },
+        showSpinner: false
       }
     },
     methods: {
@@ -75,7 +78,7 @@
           console.log('this auth.email doesnt contain @')
         } else {
           this.showSpinner = true
-          this.authenticateUser({'email': this.auth.email, 'password': this.auth.password}).then(() => {
+          this.authenticateUser({'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'accountType': this.auth.accountType}).then(() => {
             this.toolbar.showSignUp = false
             this.showSpinner = false
             this.auth.email = ''
