@@ -2,8 +2,8 @@
   <div class="unauth-toolbar" :style="{'height': (toolbar.showLogIn || toolbar.showSignUp) ? '350px' : '10vh' }">
     <auth-buttons 
       v-if="(!toolbar.showLogIn && !toolbar.showSignUp)"
-      @clickLogin="clickLogin()"
-      @clickSignup="clickSignUp()"
+      @clickLogin="clickLogin"
+      @clickSignup="clickSignUp"
     />  
     <auth-flow 
       v-else
@@ -11,7 +11,7 @@
       :auth="auth"
       :showSpinner="showSpinner"
       @submitLogin="submitLogin"
-      @submitSignUp="submitSignUp"
+      @heyParentDoSignUp="submitSignUp"
       @closeToolbar="closeToolbar"
     />
   </div>
