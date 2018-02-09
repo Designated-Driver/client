@@ -80,18 +80,6 @@
     display: flex;
     flex-direction: column;
 
-    .close-toolbar {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-    }
-
     h1 {
       height: 48px;
       display: flex;

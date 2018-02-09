@@ -12,10 +12,18 @@
       @clickSettings="clickSettings"
       v-if="toolbar.showToolbar"
     />
-    <rider-user v-else-if="toolbar.showUser" />
-    <rider-friends v-else-if="toolbar.showFriends" />
-    <rider-request v-else-if="toolbar.showRequestRide" />
-    <rider-settings v-else-if="toolbar.showSettings" />
+    <rider-user 
+     @closeToolbar="closeToolbar"
+     v-else-if="toolbar.showUser" />
+    <rider-friends 
+     @closeToolbar="closeToolbar"
+     v-else-if="toolbar.showFriends" />
+    <rider-request 
+     @closeToolbar="closeToolbar"
+     v-else-if="toolbar.showRequestRide" />
+    <rider-settings 
+     @closeToolbar="closeToolbar"
+     v-else-if="toolbar.showSettings" />
   </div>
 </template>
 
@@ -56,7 +64,7 @@
         this.toolbar.showToolbar = false
         this.toolbar.showSettings = true
       },
-      closeToolbar () {
+      closeToolbar: function () {
         this.toolbar.showUser = false
         this.toolbar.showFriends = false
         this.toolbar.showRequestRide = false

@@ -36,7 +36,7 @@
 <style lang="scss" scoped>
 .rider-buttons {
   width: 100%;
-  height: 100%;
+  height: 10vh;
   display: flex;
 
   .tabs {

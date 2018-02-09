@@ -31,4 +31,16 @@
   width: 100%;
   z-index: 1;
 }
+
+.close-toolbar {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
 </style>

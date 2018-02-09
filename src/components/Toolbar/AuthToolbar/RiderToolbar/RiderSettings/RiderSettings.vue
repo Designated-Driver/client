@@ -1,5 +1,8 @@
 <template>
   <div class="rider-settings">
+    <div class="close-toolbar" @click="$emit('closeToolbar')">
+      <i class="fa fa-times"></i>
+    </div>
     This is the settings page
   </div>
 </template>
