@@ -8,16 +8,21 @@
         <input type="text" placeholder="Destination">
       </div>
       <div class="main-passenger-count">
-        This is passenger count
+        <div class="buttons">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4+</div>
+        </div>
       </div>
       <div class="main-total">
-        This is the total
+        Total: 
       </div>
       <div class="main-payment-method">
-        payment method
+        Payment method: 
       </div>
       <div class="main-submit">
-        This is the submit
+        <button type="submit">Submit</button>
       </div>
     </div>
   </div>
@@ -42,21 +47,21 @@
   height: calc(100% - 20px);
   width: calc(100% - 20px);
   margin: 0 auto;
- // background: red;
+  //background: red;
   display: grid;
   grid-template-areas: "destination"
                        "passenger-count"
                        "total"
                        "payment-method"
                        "submit";
-  grid-template-rows: 60px 50px 50px 80px 1fr;
+  grid-template-rows: 60px 50px 50px 60px 1fr;
 
   .main-destination {
     grid-area: destination;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    //background-color: black;
     
     input {
       width: 80%;
@@ -67,18 +72,42 @@
 
   .main-passenger-count {
     grid-area: passenger-count;
-    background-color: blue;
+    //background-color: blue;
+    display: flex;
+    justify-content: center;
+
+    .buttons {
+      //background-color: red;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+
+      div {
+        width: 25%;
+        height: 30px;
+        border: 2px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+      }
+    }
 
   }
 
   .main-total {
     grid-area: total;
-    background-color: purple;
+    //background-color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
   }
 
   .main-payment-method {
     grid-area: payment-method;
-    background-color: black;
+    //background-color: black;
   }
   
   .main-submit {
