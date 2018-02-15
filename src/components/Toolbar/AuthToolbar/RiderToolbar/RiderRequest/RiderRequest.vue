@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="main-submit">
-        <button type="submit">Submit</button>
+        <div class="submit-button">Request Ride</div>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@
                        "total"
                        "payment-method"
                        "submit";
-  grid-template-rows: 60px 50px 50px 60px 1fr;
+  grid-template-rows: 60px 50px 30px 60px 1fr;
 
   .main-destination {
     grid-area: destination;
@@ -164,7 +164,20 @@
   
   .main-submit {
     grid-area: submit;
-    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .submit-button {
+      width: 80%;
+      height: 80%;
+      background: white;
+      color: black;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
 }
