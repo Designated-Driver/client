@@ -42,8 +42,8 @@
           showUser: false,
           showFriends: false,
           showRequestRide: false,
-          showSettings: false,
-          showToolbar: true
+          showSettings: true,
+          showToolbar: false
         }
       }
     },
