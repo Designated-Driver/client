@@ -19,7 +19,15 @@
         Total: 
       </div>
       <div class="main-payment-method">
-        Payment method: 
+        <div class="container">
+          <div class="card-info">
+            <div class="card-image">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1280px-Visa.svg.png" alt="card">          
+            </div>
+            <span>**** 4832 - Debit</span>
+          </div>
+          <span><i class="fa fa-pencil"></i></span>
+        </div>
       </div>
       <div class="main-submit">
         <button type="submit">Submit</button>
@@ -35,6 +43,8 @@
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Quantico');
+
 .rider-request {
   height: 100%;
   width: 100%;
@@ -47,7 +57,6 @@
   height: calc(100% - 20px);
   width: calc(100% - 20px);
   margin: 0 auto;
-  //background: red;
   display: grid;
   grid-template-areas: "destination"
                        "passenger-count"
@@ -66,7 +75,6 @@
     input {
       width: 80%;
       height: 25px;
-      
     }
   }
 
@@ -107,7 +115,51 @@
 
   .main-payment-method {
     grid-area: payment-method;
-    //background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+      color: black;
+      height: 80%;
+      width: 80%;
+      display: flex;
+      background: white;
+      border-radius: 5px;
+      justify-content: space-around;
+      align-items: center;
+
+      .card-info {
+        width: 85%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .card-image {
+          width: 50px;
+          display: flex;
+          justify-content: center;
+          img {
+            max-height: 20px;
+            max-width: 35px;
+          }
+        }
+
+        span {
+          flex-grow: 1;
+          font-family: Quantico;
+          padding-left: 10px;
+        }
+      }
+
+      >span {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
   
   .main-submit {
