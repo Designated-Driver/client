@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import { createStore } from './store'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 const store = createStore()
 const VueTouch = require('vue-touch')
 
@@ -15,6 +17,7 @@ Vue.use(VueGoogleMaps, {
     key: 'AIzaSyDDPRYo6aPBCYretfWzTaEliHbQu5VErMw'
   }
 })
+Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
 new Vue({
