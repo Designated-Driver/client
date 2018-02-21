@@ -15,9 +15,6 @@
           <div>4+</div>
         </div>
       </div>
-      <div class="main-total">
-        Total: 
-      </div>
       <div class="main-payment-method">
         <div class="container">
           <div class="card-info">
@@ -60,45 +57,57 @@
   display: grid;
   grid-template-areas: "destination"
                        "passenger-count"
-                       "total"
                        "payment-method"
                        "submit";
-  grid-template-rows: 60px 50px 30px 60px 1fr;
+  grid-template-rows: 30px 30px 60px 1fr;
+  grid-row-gap: 20px;
 
   .main-destination {
     grid-area: destination;
     display: flex;
     justify-content: center;
     align-items: center;
-    //background-color: black;
     
     input {
       width: 80%;
-      height: 25px;
+      height: 100%;
+      background: white;
+      border-radius: 5px;
+      font-size: 100%;
     }
   }
 
   .main-passenger-count {
     grid-area: passenger-count;
-    //background-color: blue;
     display: flex;
     justify-content: center;
 
     .buttons {
-      //background-color: red;
-      display:flex;
+      display: flex;
       justify-content: center;
       align-items: center;
       width: 80%;
+      // border-radius: 10px;
 
       div {
+        color: black;
+        background: white;
         width: 25%;
-        height: 30px;
-        border: 2px solid black;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        
 
+        &:first-child {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+
+        &:last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
       }
     }
 
@@ -106,7 +115,6 @@
 
   .main-total {
     grid-area: total;
-    //background-color: purple;
     display: flex;
     justify-content: center;
     align-items: center;
