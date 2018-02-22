@@ -1,3 +1,4 @@
 export default {
-  authState: false
+  authState: false,
+  showAboutPage: false
 }

@@ -12,9 +12,9 @@
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
           <div class="button">
-            <router-link to="about">        
+            <a @click="openAboutPage">        
               <span>About This App</span>
-            </router-link>
+            </a>
             <button type="submit">Sign Up</button>
           </div>
         </form>
@@ -44,9 +44,9 @@
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
           <div class="button">
-            <router-link to="about">        
+            <a @click="openAboutPage">     
               <span>About This App</span>
-            </router-link>
+            </a>
             <button type="submit">Sign Up</button>
           </div>
         </form>
@@ -58,10 +58,19 @@
 
 <script>
   import RingLoader from 'vue-spinner/src/RingLoader'
+  import { mapActions } from 'vuex'
   export default {
     name: 'AuthFlow',
     components: { RingLoader },
-    props: [ 'auth', 'toolbar', 'showSpinner' ]
+    props: [ 'auth', 'toolbar', 'showSpinner' ],
+    methods: {
+      ...mapActions([
+        'showAboutPage'
+      ]),
+      openAboutPage: function () {
+        this.showAboutPage(true)
+      }
+    }
   }
 </script>
 

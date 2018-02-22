@@ -43,6 +43,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     data () {
       return {
@@ -63,11 +64,14 @@
       }
     },
     methods: {
+      ...mapActions([
+        'showAboutPage'
+      ]),
       slideChange: function () {
         this.swiper.isEnd ? (this.showCloseTour = true) : (this.showCloseTour = false)
       },
       closeButton: function () {
-        this.$router.go(-1)
+        this.showAboutPage(false)
       }
     },
     name: 'About'
@@ -78,7 +82,9 @@
 .about {
   height: 100%;
   width: 100%;
-    position: relative;
+  top: 0;
+  left: 0;
+  position: absolute;
   
 
   .swiper {
@@ -108,6 +114,7 @@
 
       .swiper-text {
         display: flex;
+        background: white;
         flex-direction: column;
         justify-content: center;
         padding: 0 20px;

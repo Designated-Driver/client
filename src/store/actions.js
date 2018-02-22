@@ -19,5 +19,8 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  showAboutPage: function ({commit, dispatch, state}, val) {
+    commit('MUTATE_SHOW_ABOUT_PAGE', val)
   }
 }
