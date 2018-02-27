@@ -114,7 +114,7 @@
 
       .swiper-text {
         display: flex;
-        background: white;
+        background: #ececec;
         flex-direction: column;
         justify-content: center;
         padding: 0 20px;

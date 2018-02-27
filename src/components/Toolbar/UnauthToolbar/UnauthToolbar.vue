@@ -11,7 +11,7 @@
       :auth="auth"
       :showSpinner="showSpinner"
       @submitLogin="submitLogin"
-      @heyParentDoSignUp="submitSignUp"
+      @submitSignUp="submitSignUp"
       @closeToolbar="closeToolbar"
     />
   </div>

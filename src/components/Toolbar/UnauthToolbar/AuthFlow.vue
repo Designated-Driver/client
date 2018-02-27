@@ -27,7 +27,7 @@
           <i class="fa fa-times"></i>
         </div>
         <h1>Create An Account</h1>
-        <form @submit.prevent="$emit('heyParentDoSignUp')">
+        <form @submit.prevent="$emit('submitSignUp')">
           <div class="account-type">
             <span>
               <input id="riderCheckBox" name="accountType" value="rider" v-model="auth.accountType" type="radio">
