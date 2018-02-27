@@ -14,7 +14,8 @@ Vue.config.productionTip = false
 Vue.use(VueTouch, {name: 'v-touch'})
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyDDPRYo6aPBCYretfWzTaEliHbQu5VErMw'
+    key: 'AIzaSyDDPRYo6aPBCYretfWzTaEliHbQu5VErMw',
+    libraries: 'places'
   }
 })
 Vue.use(VueAwesomeSwiper)

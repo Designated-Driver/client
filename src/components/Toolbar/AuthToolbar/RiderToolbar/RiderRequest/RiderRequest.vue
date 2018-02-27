@@ -5,7 +5,7 @@
     </div>
     <div class="main-content">
       <div class="main-destination">
-        <input type="text" placeholder="Destination">
+        <gmap-autocomplete @place_changed="setPlace" placeholder="Enter your destination"/>
       </div>
       <div class="main-passenger-count">
         <div class="buttons">
@@ -23,11 +23,11 @@
             </div>
             <span>**** 4832 - Debit</span>
           </div>
-          <span><i class="fa fa-pencil"></i></span>
+          <span @click="updatePaymentMethod"><i class="fa fa-pencil"></i></span>
         </div>
       </div>
       <div class="main-submit">
-        <div class="submit-button">Request Ride</div>
+        <div @click="requestRide" class="submit-button">Request Ride</div>
       </div>
     </div>
   </div>
@@ -35,7 +35,25 @@
 
 <script>
   export default {
-    name: 'RiderRequest'
+    name: 'RiderRequest',
+    data () {
+      return {
+        destination: '',
+        numPeople: 1
+      }
+    },
+    methods: {
+      updatePaymentMethod: function () {
+        console.log('open the page to update the payment methods')
+      },
+      requestRide: function () {
+        // Call action to request ride, pass along form information
+        console.log(this.destination)
+      },
+      setPlace: function () {
+        console.log('you are here')
+      }
+    }
   }
 </script>
 
