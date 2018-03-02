@@ -2,20 +2,28 @@ import { firebase } from './utils/firebase'
 
 export default {
   authenticateUser: function ({commit, dispatch, state}, payload) {
-    return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {
-      firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({
-        'fullName': payload.fullName,
-        'accountType': payload.accountType
+    return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(user => {
+        firebase.database().ref(`/users/online/${payload.accountType}s/currentlyIdle/${firebase.auth().currentUser.uid}`).set({
+          'fullName': payload.fullName,
+          'email': payload.email
+        })
+        commit('SET_AUTH_STATE', true) // Update this to provide more information to the state
+      }).catch(err => {
+        console.log(err)
       })
-      commit('SET_AUTH_STATE')
+  },
+  loginUser: function ({commit, dispatch, state}, payload) {
+    return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
+      // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
+      commit('SET_AUTH_STATE', true)
     }).catch(err => {
       console.log(err)
     })
   },
-  loginUser: function ({commit, dispatch, state}, payload) {
-    return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
-      console.log('you have signed in')
-      commit('SET_AUTH_STATE')
+  logoutUser: function ({commit, dispatch, state}) {
+    return firebase.auth().signOut().then(response => {
+      commit('SET_AUTH_STATE', false)
     }).catch(err => {
       console.log(err)
     })
