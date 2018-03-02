@@ -1,8 +1,11 @@
 <template>
   <div class="map">
     <gmap-map
-      :center="mapData.currentPosition"
+      :center="mapData.mapCenter"
       :zoom="14"
+      ref="map"
+      @center_changed="updateCenter($refs.map.$mapObject.getCenter())"
+      @idle="sync"
       :options="{
         fullscreenControl: false,
         mapTypeControl: false, 
@@ -12,11 +15,8 @@
       }"
       style="width: 100%; height: 100%;">
       <gmap-marker
-          :key="index"
-          v-for="(m, index) in mapData.markers"
-          :position="m.position"
-          :clickable="true"
-          @click="center=m.position">
+          :position="mapData.currentPosition"
+          :clickable="true">
       </gmap-marker>
     </gmap-map>
   </div>
@@ -29,9 +29,7 @@
       return {
         mapData: {
           currentPosition: {lat: 40.696514, lng: -73.997872},
-          markers: [
-            // {position: {lat: 36.984117, lng: -122.030796}}
-          ]
+          mapCenter: null
         },
         mapStyles: [
           {
@@ -233,11 +231,14 @@
     mounted () {
       this.getlocation()
     },
+    created () {
+      this.sync()
+    },
     methods: {
       getlocation () {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((position) => {
-            this.mapData.currentPosition = {
+            this.mapData.mapCenter = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             }
@@ -245,6 +246,15 @@
         } else {
           console.log('this browser doesnt support geolocation and probably shouldnt be used')
         }
+      },
+      updateCenter (latLng) {
+        this.mapData.currentPosition = {
+          lat: latLng.lat(),
+          lng: latLng.lng()
+        }
+      },
+      sync () {
+        this.mapData.mapCenter = this.mapData.currentPosition
       }
     }
   }
