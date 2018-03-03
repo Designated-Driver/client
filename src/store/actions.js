@@ -1,4 +1,4 @@
-import { firebase } from './utils/firebase'
+import { firebase, messaging } from './utils/firebase'
 
 export default {
   authenticateUser: function ({commit, dispatch, state}, payload) {
@@ -17,6 +17,9 @@ export default {
     return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
       // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
       commit('SET_AUTH_STATE', true)
+      messaging.getToken().then(token => {
+        console.log(`The token is ${token}`)
+      })
     }).catch(err => {
       console.log(err)
     })
@@ -30,5 +33,13 @@ export default {
   },
   showAboutPage: function ({commit, dispatch, state}, val) {
     commit('MUTATE_SHOW_ABOUT_PAGE', val)
+  },
+  toggleMessaging () {
+    messaging.requestPermission()
+      .then(() => {
+        messaging.getToken().then(token => {
+          console.log(`The token is ${token}`)
+        })
+      })
   }
 }

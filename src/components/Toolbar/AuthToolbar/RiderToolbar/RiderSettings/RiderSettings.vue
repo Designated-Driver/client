@@ -5,6 +5,7 @@
     </div>
     <div>
       <div @click="logout">LOGOUT HERE</div>
+      <div @click="toggleMessages">Allow Messaging</div>
     </div>
   </div>
 </template>
@@ -15,10 +16,14 @@
     name: 'RiderSettings',
     methods: {
       ...mapActions([
-        'logoutUser'
+        'logoutUser',
+        'toggleMessaging'
       ]),
       logout () {
         this.logoutUser()
+      },
+      toggleMessages () {
+        this.toggleMessaging()
       }
     }
   }
