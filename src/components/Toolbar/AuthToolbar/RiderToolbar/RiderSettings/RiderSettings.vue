@@ -37,10 +37,10 @@
       <div class="ride-history">
         This is the ride history page.
       </div>
-      <div class="about">
+      <div class="about" @click="toggleMessages">
         This is the about page.
       </div>
-      <div class="sign-out">
+      <div class="sign-out" @click="logout">
         This is to sign out.
       </div>
     </div>
