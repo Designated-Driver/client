@@ -12,49 +12,49 @@
           <img src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
         </div>
         <div class="text">
-          <div class="name">
-            <span>
+          <div>
+           
             Anjali k.
-            </span>
+            
           </div>
-          <div class="email">
-            <span>
+          <div>
+            
             anjali@email.com
-            </span>
+           
           </div>
-          <div class="phone">
-            <span>
+          <div >
+            
             (012) 123-1234
-            </span>
+            
           </div>
         </div>
       </div>
       <div class="content-vehicle">
  <div class="text2">
           <div class="Brand">
-            <span>
+          
             Toyota
-            </span>
+           
           </div>
           <div class="Model">
-            <span>
+            
            Corrolla
-            </span>
+            
           </div>
           <div class="Year">
-            <span>
+            
            2018
-            </span>
+            
           </div>
            <div class="Seats">
-            <span>
+           
            5
-            </span>
+          
           </div>
         </div>
       </div>
-      <div class="content-update">
-        <span>Should install a button here that goes to settings page </span>
+     <div class="content-update">
+        <div @click="gotosettings" class="submit-button">Make Changes</div>
       </div>
     </div>
   </div>
@@ -78,11 +78,9 @@
     
     width: calc(100% - 20px);
     margin: 0 auto;
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
     >div{
       border: 1px solid black;
       width: 100%;
@@ -102,6 +100,7 @@
       color:black;
       border-radius: 10px;
       
+      
           .image {
       height: 100%;
       width: 100px;
@@ -117,18 +116,37 @@
     .text {
       height: 100%;
       flex-grow: 1;
-      .name, .email, .phone {
-        height: 33%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+    div {
+        color: black;
+        background: white;
+        width: 25%;
+        height: 100%;
         display: flex;
+        justify-content: center;
         align-items: center;
-        span {
-          padding-left: 30px;
+        
+        &:first-child {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+        &:last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
         }
       }
     }
      
     }
        .content-vehicle{
+         
+   
+      justify-content: center;
+      align-items: center;
+     
       display:flex;
       background:white;
       width: 80%;
@@ -136,26 +154,51 @@
       color:black;
       border-radius: 10px;
      
-    
+    div {
+        color: black;
+        background: white;
+        width: 25%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &:first-child {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+        &:last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      }
       
          
     
      
     }
-        .content-update{
-      display:flex;
+      .content-update {
+    grid-area: submit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     display:flex;
       background:white;
       width: 80%;
       margin: 0 auto;
       color:black;
       border-radius: 10px;
-      text-align: center;
-      text-align: justify;
-      
-         
-    
-     
+    .submit-button {
+      width: 80%;
+      height: 80%;
+      background: white;
+      color: black;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
+}
 }
 </style>
