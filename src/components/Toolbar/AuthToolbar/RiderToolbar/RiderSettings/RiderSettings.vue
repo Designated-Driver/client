@@ -32,13 +32,20 @@
         </div>
       </div>
       <div class="payments">
-        This is the payment.
+        <i class="fa fa-cc-visa"></i>
+        <span>Payment</span>
       </div>
       <div class="ride-history">
-        This is the ride history page.
+        <i class="fa fa-history"></i>
+        Ride History
       </div>
       <div class="about" @click="toggleMessages">
-        This is the about page.
+        <i class="fa fa-info"></i>
+        <span>This is the&nbsp;</span>
+          <router-link to="about">
+            <span>about</span>
+          </router-link>
+        <span> &nbsp;page.</span>
       </div>
       <div class="sign-out" @click="logout">
         This is to sign out.
@@ -78,7 +85,7 @@
 .main-content {
   height: calc(100% - 20px);
   width: calc(100% - 20px);
-  background: blue;
+ // background: blue;
   display: grid;
   grid-template-areas:  "settings"
                         "profile"
@@ -86,18 +93,25 @@
                         "ride-history"
                         "about"
                         "sign-out";
-  grid-template-rows: 80px 100px 75px 60px 60px 1fr;
+  grid-template-rows: 120px 100px 60px 60px 60px 1fr;
   grid-template-columns: 100%;
 
   .settings {
     grid-area: settings;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 60px;
+    margin-top: 20px;
   }
 
   .profile {
     display: flex;
     flex-direction: row;
     grid-area: profile;
-    background-color: red;
+    
     .image {
       height: 100%;
       width: 100px;
@@ -128,23 +142,70 @@
 
   .payments {
     grid-area: payments;
-    background-color: green;
+    height: 60px;
+    //background-color: green;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 60px;
+
+    span {
+      padding-left: 0px;
+    }
+
+      i {
+    width: 60px;
+    padding-left: 40px;
+  }
 
   }
 
   .ride-history {
     grid-area: ride-history;
-    background-color: orange;
+    height: 60px;    
+    //background-color: orange;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 60px;
+
+      i {
+    width: 60px;
+    padding-left: 44px;
+  }
   }
 
   .about {
     grid-area: about;
+    height: 60px;    
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 60px;
+
+      i {
+    width: 60px;
+    padding-left: 47px;
+  }
+
   }
 
   .sign-out {
     grid-area: sign-out;
-    background-color: purple;
+    // //background-color: purple;
+    display: flex;
+    align-items: center;
+    // flex: end;
+    // align-items: left;
+    position: absolute;
+    bottom: 0;
   }
+  a {
+    color: white;
+  }
+
+
+
 
 }
 </style>
