@@ -4,10 +4,14 @@
     <div class="close-toolbar" @click="$emit('closeToolbar')">
       <i class="fa fa-times"></i>
     </div>
+   
+
     <div class="main-content">
+
       <div class="content-header">
         <span>Profile </span>
       </div>
+
       <div class="profile">
         <div class="image">
           <img src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
@@ -30,30 +34,22 @@
           </div>
         </div>
       </div>
+
       <div class="content-vehicle">
- 
           <div class="Brand">
-          
             Toyota
-           
           </div>
           <div class="Model">
-            
            Corrolla
-            
           </div>
           <div class="Year">
-            
-           2018
-            
+            2018
           </div>
            <div class="Seats">
-           
            5
-          
           </div>
-       
       </div>
+
      <div class="content-update">
         <div @click="gotosettings" class="submit-button">Make Changes</div>
       </div>
@@ -62,101 +58,112 @@
 </template>
 
 <script>
-  export default {
-    name: 'RiderUser'
-  }
+export default {
+  name: 'RiderUser'
+}
 </script>
 
 <style lang="scss" scoped>
 .rider-user {
   height: 100%;
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
+
   .main-content {
     height: calc(100% - 20px);
-    
     width: calc(100% - 20px);
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    >div{
-      border: 1px solid black;
-      width: 100%;
-      height: 20%;
-    }
-    .content-header{
-      text-align:center;
-      font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    grid-template-areas:"header_prof"
+                        "profile_pg"
+                        "car_info"
+                        "changing";
+    grid-template-rows: 5px, 40px,30px,20px;
+    grid-row-gap: 50px;
+    
+    .content-header {
+      //header
+      width: 85%;
+      height: 35%;
+      grid-area: header_prof;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: white;
-      height: 24px;
     }
-    .content-profile{
-      display:flex;
-      background:white;
-      width: 80%;
-      margin: 0 auto;
-      color:black;
-      border-radius: 10px;
-      height: 100px;
-      
-          .image {
-      height: 100%;
-      width: 100px;
+
+    .profile {
+      width: 85%;
+      height: 80%;
+      grid-area: profile_pg;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      img {
-        max-height: 80%;
-        max-width: 80%;
-        border-radius: 50%;
-      }
-    }
-    .text {
-      height: 100%;
-      flex-grow: 1;
+      flex-direction: row;
+      grid-area: profile_pg;
+      grid-template-areas:
+        "photo" "username"
+        "photo" "email"
+        "photo" "number";
+      grid-template-rows: 1fr, 1fr, 1fr;
+      grid-template-columns: 15%, 1fr;
+
       display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 80%;
-    div {
-        color: black;
-        background: white;
-        width: 25%;
+      background: white;
+      color: black;
+      border-radius: 5px;
+
+      .image {
+        grid-area: photo;
         height: 100%;
+        width: 100px;
         display: flex;
-        justify-content: baseline;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          max-height: 80%;
+          max-width: 80%;
+          border-radius: 50%;
+        }
+      }
+      .name {
+        grid-area: username;
+        height: 33%;
+        display: flex;
+        align-items: center;
+       
+      }
+      .email {
+        grid-area: email;
+        height: 33%;
+        display: flex;
         align-items: center;
         
-        &:first-child {
-          border-top-left-radius: 5px;
-          border-bottom-left-radius: 5px;
-        }
-        &:last-child {
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-        }
+      }
+      .phone {
+        grid-area: number;
+        height: 33%;
+        display: flex;
+        align-items: center;
+        
       }
     }
-     
-    }
-       .content-vehicle{
-         
-   
+
+    .content-vehicle {
+      width: 85%;
+      height: 60%;
+      grid-area: car_info;
       justify-content: center;
       align-items: center;
-     
-      display:flex;
-      background:white;
-      width: 80%;
-       height: 100px;
-      margin: 0 auto;
-      color:black;
-      border-radius: 10px;
-     
-    div {
+      display: flex;
+      background: white;
+      color: black;
+      border-radius: 5px;
+
+      div {
         color: black;
         background: white;
         width: 25%;
@@ -164,7 +171,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
         &:first-child {
           border-top-left-radius: 5px;
           border-bottom-left-radius: 5px;
@@ -174,72 +181,31 @@
           border-bottom-right-radius: 5px;
         }
       }
-      
-         
-    
-     
     }
-      .profile {
-    display: flex;
-    flex-direction: row;
-    grid-area: profile;
-    display:flex;
-      background:white;
-      width: 80%;
-      margin: 0 auto;
-      color:black;
-      border-radius: 10px;
-      height: 100px;
-    .image {
-      height: 100%;
-      width: 100px;
+
+    .content-update {
+      width: 85%;
+      height: 50%;
+      grid-area: changing;
+      grid-area: submit;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      img {
-        max-height: 80%;
-        max-width: 80%;
-        border-radius: 50%;
-      }
-    }
-    .text {
-      height: 100%;
-      flex-grow: 1;
-
-      .name, .email, .phone {
-        height: 33%;
-        display: flex;
-        align-items: center;
-        span {
-          padding-left: 30px;
-        }
-      }
-    }
-  }
-      .content-update {
-    grid-area: submit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-     display:flex;
-      background:white;
-      width: 80%;
-       height: 100px;
-      margin: 0 auto;
-      color:black;
-      border-radius: 10px;
-    .submit-button {
-      width: 80%;
-      height: 80%;
       background: white;
       color: black;
       border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+
+      .submit-button {
+        width: 80%;
+        height: 80%;
+        background: white;
+        color: black;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
-}
 }
 </style>
