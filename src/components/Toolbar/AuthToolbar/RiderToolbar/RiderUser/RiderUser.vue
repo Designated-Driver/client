@@ -13,6 +13,7 @@
       </div>
 
       <div class="profile">
+        <div class="prof-box">
         <div class="image">
           <img src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
         </div>
@@ -32,22 +33,25 @@
             (012) 123-1234
             </span>
           </div>
+          </div>
         </div>
       </div>
 
       <div class="content-vehicle">
+        <div class="veh-box">
           <div class="Brand">
-            Toyota
+            <span>Toyota</span>
           </div>
           <div class="Model">
-           Corrolla
+            <span>Corolla</span>
           </div>
           <div class="Year">
-            2018
+            <span>2018</span>
           </div>
            <div class="Seats">
-           5
+            <span>5</span>
           </div>
+        </div>
       </div>
 
      <div class="content-update">
@@ -82,8 +86,8 @@ export default {
                         "profile_pg"
                         "car_info"
                         "changing";
-    grid-template-rows: 5px, 40px,30px,20px;
-    grid-row-gap: 50px;
+    grid-template-rows: 5%, 30%, 30%, 20%;
+    grid-row-gap: 5px;
     
     .content-header {
       //header
@@ -97,23 +101,28 @@ export default {
     }
 
     .profile {
-      width: 85%;
-      height: 80%;
+      width: 100%;
+      height: 100%;
       grid-area: profile_pg;
       display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: row;
       grid-area: profile_pg;
-      grid-template-areas:
-        "photo" "username"
-        "photo" "email"
-        "photo" "number";
-      grid-template-rows: 1fr, 1fr, 1fr;
-      grid-template-columns: 15%, 1fr;
-
-      display: flex;
-      background: white;
-      color: black;
-      border-radius: 5px;
+      .prof-box {
+        width:80%;
+        height: 85%;
+        grid-template-areas:
+          "photo" "username"
+          "photo" "email"
+          "photo" "number";
+        grid-template-rows: 1fr, 1fr, 1fr;
+        grid-template-columns: 15%, 1fr;
+        grid-row-gap: 20px;
+        display: flex;
+        background: white;
+        color: black;
+        border-radius: 5px;
 
       .image {
         grid-area: photo;
@@ -150,41 +159,66 @@ export default {
         align-items: center;
         
       }
+      }
     }
 
     .content-vehicle {
-      width: 85%;
-      height: 60%;
+      width: 100%;
+      height: 100%;
       grid-area: car_info;
       justify-content: center;
       align-items: center;
       display: flex;
-      background: white;
-      color: black;
-      border-radius: 5px;
-
-      div {
-        color: black;
-        background: white;
-        width: 25%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
+      .veh-box{
+        height: 65%;
+        width: 80%;
+        display:flex;
         align-items: center;
+        justify-content: center;
+        background: white;
+        color: black;
+        border-radius: 5px;
+        grid-template-areas:
+          "car-type" "car-model" "car-year" "car-seats";
+        grid-template-columns: 25%, 25%, 25%, 25%;
 
-        &:first-child {
-          border-top-left-radius: 5px;
-          border-bottom-left-radius: 5px;
+        .Brand{
+          width: 100%;
+          height: 100%;
+          grid-area: car-type;
+          display:flex;
+          align-items: center;
+          justify-content: center;
         }
-        &:last-child {
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
+        .Model{
+          grid-area: car-model;
+          width: 100%;
+          height: 100%;
+          display:flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .Year{
+          grid-area: car-year;
+          width: 100%;
+          height: 100%;
+          display:flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .Seats{
+          grid-area: car-seats;
+          width: 100%;
+          height: 100%;
+          display:flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
 
     .content-update {
-      width: 85%;
+      width: 80%;
       height: 50%;
       grid-area: changing;
       grid-area: submit;
