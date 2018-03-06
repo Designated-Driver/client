@@ -11,7 +11,7 @@
       </div>
       <div class="profile">
         <div class="image">
-          <img src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
+          <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
         </div>
         <div class="text">
           <div class="name">
@@ -37,18 +37,23 @@
       </div>
       <div class="ride-history">
         <i class="fa fa-history"></i>
-        Ride History
+        <span>Rider History</span>
       </div>
-      <div class="about" @click="toggleMessages">
+      <div class="about" @click="this.showAboutPage">
         <i class="fa fa-info"></i>
-        <span>This is the&nbsp;</span>
-          <router-link to="about">
-            <span>about</span>
-          </router-link>
-        <span> &nbsp;page.</span>
+        <span>About Designated Driver Service</span>
       </div>
-      <div class="sign-out" @click="logout">
-        This is to sign out.
+      <div class="permissions">
+        <i class="fa fa-bell"></i>
+        <span>Application Permissionss</span>
+      </div>
+      <div class="sign-out">
+        <div @click="toggleMessages">
+          <span>Click here to get messages token</span>
+        </div>
+        <div class="logout" @click="logout">
+          <span>Log Out</span>
+        </div>
       </div>
     </div>
   </div>
@@ -61,7 +66,8 @@
     methods: {
       ...mapActions([
         'logoutUser',
-        'toggleMessaging'
+        'toggleMessaging',
+        'showAboutPage'
       ]),
       logout () {
         this.logoutUser()
@@ -91,9 +97,10 @@
                         "profile"
                         "payments"
                         "ride-history"
+                        "permissions"
                         "about"
                         "sign-out";
-  grid-template-rows: 120px 100px 60px 60px 60px 1fr;
+  grid-template-rows: 120px 100px 60px 60px 60px 60px 1fr;
   grid-template-columns: 100%;
 
   .settings {
@@ -120,11 +127,13 @@
       align-items: center;
 
       img {
+      background: white;
         max-height: 80%;
         max-width: 80%;
         border-radius: 50%;
       }
     }
+
     .text {
       height: 100%;
       flex-grow: 1;
@@ -143,36 +152,33 @@
   .payments {
     grid-area: payments;
     height: 60px;
-    //background-color: green;
     display: flex;
     justify-content: left;
     align-items: center;
-    margin-top: 60px;
 
-    span {
-      padding-left: 0px;
+    i {
+      width: 60px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-
-      i {
-    width: 60px;
-    padding-left: 40px;
-  }
-
   }
 
   .ride-history {
     grid-area: ride-history;
     height: 60px;    
-    //background-color: orange;
     display: flex;
     justify-content: left;
     align-items: center;
-    margin-top: 60px;
 
-      i {
-    width: 60px;
-    padding-left: 44px;
-  }
+    i {
+      width: 60px;
+      height: 100%;  
+      display: flex;
+      justify-content: center;
+      align-items: center;    
+    }
   }
 
   .about {
@@ -181,31 +187,53 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    margin-top: 60px;
 
-      i {
-    width: 60px;
-    padding-left: 47px;
+    i {
+      width: 60px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
+  .permissions {
+    grid-area: permissions;
+    height: 60px;    
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    i {
+      width: 60px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .sign-out {
     grid-area: sign-out;
-    // //background-color: purple;
     display: flex;
-    align-items: center;
-    // flex: end;
-    // align-items: left;
-    position: absolute;
-    bottom: 0;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .logout {
+      width: 90%;
+      background: white;
+      color: black;
+      align-self: center;
+      border-radius: 5px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
+
   a {
     color: white;
   }
-
-
-
-
 }
 </style>

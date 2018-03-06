@@ -15,7 +15,7 @@
       <div class="profile">
         <div class="prof-box">
         <div class="image">
-          <img src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
+          <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
         </div>
         <div class="text">
           <div class="name">
@@ -55,7 +55,7 @@
       </div>
 
      <div class="content-update">
-        <div @click="gotosettings" class="submit-button">Make Changes</div>
+        <div class="submit-button">Make Changes</div>
       </div>
     </div>
   </div>
@@ -133,6 +133,8 @@ export default {
         align-items: center;
 
         img {
+          background: white;
+          // border: 1px solid gray;
           max-height: 80%;
           max-width: 80%;
           border-radius: 50%;
