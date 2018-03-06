@@ -41,5 +41,8 @@ export default {
           console.log(`The token is ${token}`)
         })
       })
+  },
+  updateStartLocation ({commit, dispatch, state}, payload) {
+    commit('MUTATE_START_LOCATION', payload)
   }
 }

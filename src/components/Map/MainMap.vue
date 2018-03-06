@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: 'MainMap',
     data () {
@@ -235,9 +236,13 @@
       this.sync()
     },
     methods: {
+      ...mapActions([
+        'updateStartLocation'
+      ]),
       getlocation () {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((position) => {
+            console.log(`Updating geolation to ${position.coords.latitude}, ${position.coords.longitude}`)
             this.mapData.mapCenter = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
@@ -255,6 +260,7 @@
       },
       sync () {
         this.mapData.mapCenter = this.mapData.currentPosition
+        this.updateStartLocation(this.mapData.mapCenter)
       }
     }
   }

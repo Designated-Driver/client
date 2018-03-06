@@ -4,14 +4,10 @@
     <div class="close-toolbar" @click="$emit('closeToolbar')">
       <i class="fa fa-times"></i>
     </div>
-   
-
     <div class="main-content">
-
       <div class="content-header">
         <span>Profile </span>
       </div>
-
       <div class="profile">
         <div class="prof-box">
         <div class="image">
@@ -36,7 +32,6 @@
           </div>
         </div>
       </div>
-
       <div class="content-vehicle">
         <div class="veh-box">
           <div class="Brand">
@@ -53,7 +48,6 @@
           </div>
         </div>
       </div>
-
      <div class="content-update">
         <div class="submit-button">Make Changes</div>
       </div>
@@ -62,9 +56,9 @@
 </template>
 
 <script>
-export default {
-  name: 'RiderUser'
-}
+  export default {
+    name: 'RiderUser'
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -82,13 +76,14 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-template-areas:"header_prof"
-                        "profile_pg"
-                        "car_info"
-                        "changing";
+    grid-template-areas:
+      "header_prof"
+      "profile_pg"
+      "car_info"
+      "changing";
     grid-template-rows: 5%, 30%, 30%, 20%;
     grid-row-gap: 5px;
-    
+
     .content-header {
       //header
       width: 85%;
@@ -109,8 +104,9 @@ export default {
       align-items: center;
       flex-direction: row;
       grid-area: profile_pg;
+
       .prof-box {
-        width:80%;
+        width: 80%;
         height: 85%;
         grid-template-areas:
           "photo" "username"
@@ -124,43 +120,43 @@ export default {
         color: black;
         border-radius: 5px;
 
-      .image {
-        grid-area: photo;
-        height: 100%;
-        width: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .image {
+          grid-area: photo;
+          height: 100%;
+          width: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-        img {
-          background: white;
-          // border: 1px solid gray;
-          max-height: 80%;
-          max-width: 80%;
-          border-radius: 50%;
+          img {
+            background: white;
+            // border: 1px solid gray;
+            max-height: 80%;
+            max-width: 80%;
+            border-radius: 50%;
+          }
         }
-      }
-      .name {
-        grid-area: username;
-        height: 33%;
-        display: flex;
-        align-items: center;
-       
-      }
-      .email {
-        grid-area: email;
-        height: 33%;
-        display: flex;
-        align-items: center;
-        
-      }
-      .phone {
-        grid-area: number;
-        height: 33%;
-        display: flex;
-        align-items: center;
-        
-      }
+
+        .name {
+          grid-area: username;
+          height: 33%;
+          display: flex;
+          align-items: center;
+        }
+
+        .email {
+          grid-area: email;
+          height: 33%;
+          display: flex;
+          align-items: center;
+        }
+
+        .phone {
+          grid-area: number;
+          height: 33%;
+          display: flex;
+          align-items: center;
+        }
       }
     }
 
@@ -171,48 +167,51 @@ export default {
       justify-content: center;
       align-items: center;
       display: flex;
-      .veh-box{
+
+      .veh-box {
         height: 65%;
         width: 80%;
-        display:flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         background: white;
         color: black;
         border-radius: 5px;
-        grid-template-areas:
-          "car-type" "car-model" "car-year" "car-seats";
+        grid-template-areas: "car-type" "car-model" "car-year" "car-seats";
         grid-template-columns: 25%, 25%, 25%, 25%;
 
-        .Brand{
+        .Brand {
           width: 100%;
           height: 100%;
           grid-area: car-type;
-          display:flex;
+          display: flex;
           align-items: center;
           justify-content: center;
         }
-        .Model{
+
+        .Model {
           grid-area: car-model;
           width: 100%;
           height: 100%;
-          display:flex;
+          display: flex;
           align-items: center;
           justify-content: center;
         }
-        .Year{
+
+        .Year {
           grid-area: car-year;
           width: 100%;
           height: 100%;
-          display:flex;
+          display: flex;
           align-items: center;
           justify-content: center;
         }
-        .Seats{
+
+        .Seats {
           grid-area: car-seats;
           width: 100%;
           height: 100%;
-          display:flex;
+          display: flex;
           align-items: center;
           justify-content: center;
         }

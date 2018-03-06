@@ -4,5 +4,8 @@ export default {
   },
   getShowAboutPage: function (state) {
     return state.showAboutPage
+  },
+  getStartLocation: function (state) {
+    return state.startLocation
   }
 }

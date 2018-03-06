@@ -26,8 +26,7 @@
 .toolbar {
   position: absolute;
   bottom: 0px;
-  // border-top: 2px solid black;
-  background: #38414e;
+  background: #2C2F33;
   width: 100%;
   z-index: 1;
 }

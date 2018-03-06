@@ -34,8 +34,14 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     name: 'RiderRequest',
+    computed: {
+      ...mapGetters([
+        'getStartLocation'
+      ])
+    },
     data () {
       return {
         destination: '',
@@ -50,8 +56,15 @@
         // Call action to request ride, pass along form information
         console.log(this.destination)
       },
-      setPlace: function () {
-        console.log('you are here')
+      setPlace: function (place) {
+        this.desination = {'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng()}
+      }
+    },
+    watch: {
+      'destination': {
+        handler: function (after, before) {
+          console.log(`The start location is ${this.getStartLocation.lat}, ${this.geoStartLocation.lng}`)
+        }
       }
     }
   }
