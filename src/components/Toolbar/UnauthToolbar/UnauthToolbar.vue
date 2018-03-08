@@ -4,7 +4,8 @@
       v-if="(!toolbar.showLogIn && !toolbar.showSignUp)"
       @clickLogin="clickLogin"
       @clickSignup="clickSignUp"
-    />  
+    />
+    
     <auth-flow 
       v-else
       :toolbar="toolbar" 

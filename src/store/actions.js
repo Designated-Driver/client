@@ -44,5 +44,17 @@ export default {
   },
   updateStartLocation ({commit, dispatch, state}, payload) {
     commit('MUTATE_START_LOCATION', payload)
+  },
+  updateEndLocation ({commit, dispatch, state}, payload) {
+    commit('MUTATE_END_LOCATION', payload)
+  },
+  updateTripCost ({commit, dispatch, state}, val) {
+    commit('MUTATE_TRIP_COST', val)
+  },
+  generateRoute ({commit, dispatch, state}, val) {
+    commit('MUTATE_GENERATE_ROUTE', val)
+  },
+  updateCurrentlyOnTrip ({commit, dispatch, state}, val) {
+    commit('MUTATE_CURRENLY_ON_TRIP', val)
   }
 }

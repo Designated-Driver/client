@@ -11,11 +11,3 @@ var config = {
 
 firebase.initializeApp(config)
 const messaging = firebase.messaging()
-
-messaging.setBackgroundMessageHandler(payload => {
-  const notificationOptions = {
-    body: 'Background Message body.',
-    icon: '/firebase-logo.png'
-  }
-  self.registration.showNotification('New message from Alice', notificationOptions)
-})

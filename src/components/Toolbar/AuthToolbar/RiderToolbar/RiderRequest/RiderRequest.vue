@@ -16,14 +16,17 @@
         </div>
       </div>
       <div class="main-payment-method">
-        <div class="container">
+        <div class="trip-total" v-if="getTripCost">
+          <span>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>    
+        </div>  
+        <div class="container" :class="{'top-borders': !getTripCost}">      
           <div class="card-info">
             <div class="card-image">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1280px-Visa.svg.png" alt="card">          
             </div>
             <span>**** 4832 - Debit</span>
+            <span @click="updatePaymentMethod"><i class="fa fa-pencil"></i></span>          
           </div>
-          <span @click="updatePaymentMethod"><i class="fa fa-pencil"></i></span>
         </div>
       </div>
       <div class="main-submit">
@@ -34,12 +37,14 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
+  // import axios from 'axios'
   export default {
     name: 'RiderRequest',
     computed: {
       ...mapGetters([
-        'getStartLocation'
+        'getStartLocation',
+        'getTripCost'
       ])
     },
     data () {
@@ -49,21 +54,45 @@
       }
     },
     methods: {
+      ...mapActions([
+        'updateEndLocation',
+        'generateRoute',
+        'updateTripCost',
+        'updateCurrentlyOnTrip'
+      ]),
       updatePaymentMethod: function () {
         console.log('open the page to update the payment methods')
       },
       requestRide: function () {
-        // Call action to request ride, pass along form information
-        console.log(this.destination)
+        this.generateRoute(true)
+        this.$emit('closeToolbar')
+        this.updateTripCost(null)
+        this.updateCurrentlyOnTrip(true)
+        // axios.get(`http://localhost:5000/designated-driv/us-central1/requestRide?startPosLat=${this.getStartLocation.lat}&startPosLng=${this.getStartLocation.lng}&endPosLat=${this.destination.lat}&endPosLng=${this.destination.lng}&numPeople=3&riderID=PkC76L7fxUbkqsVx94gE1S693tu1`, {
+        //   headers: {
+        //     'Access-Control-Allow-Origin': '*'
+        //   }
+        // }).then(response => {
+        //   console.log(response)
+        //   this.$emit('closeToolbar')
+        // }).catch(err => {
+        //   console.log(err)
+        // })
       },
       setPlace: function (place) {
-        this.desination = {'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng()}
+        if (place.place_id) {
+          this.destination = {'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng()}
+          this.updateEndLocation(this.destination)
+        } else {
+          console.log('this place doesnt work')
+        }
       }
     },
     watch: {
       'destination': {
         handler: function (after, before) {
-          console.log(`The start location is ${this.getStartLocation.lat}, ${this.geoStartLocation.lng}`)
+          console.log(`The start location is ${this.getStartLocation.lat}, ${this.getStartLocation.lng}`)
+          // Do some code here
         }
       }
     }
@@ -85,23 +114,18 @@
   height: calc(100% - 20px);
   width: calc(100% - 20px);
   margin: 0 auto;
-  display: grid;
-  grid-template-areas: "destination"
-                       "passenger-count"
-                       "payment-method"
-                       "submit";
-  grid-template-rows: 30px 30px 60px 1fr;
-  grid-row-gap: 20px;
+  display: flex;
+  flex-direction: column;
 
   .main-destination {
-    grid-area: destination;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 80px;
     
     input {
       width: 80%;
-      height: 100%;
+      height: 40px;
       background: white;
       border-radius: 5px;
       font-size: 100%;
@@ -109,9 +133,9 @@
   }
 
   .main-passenger-count {
-    grid-area: passenger-count;
     display: flex;
     justify-content: center;
+    height: 40px;
 
     .buttons {
       display: flex;
@@ -141,35 +165,40 @@
         }
       }
     }
-
-  }
-
-  .main-total {
-    grid-area: total;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
   }
 
   .main-payment-method {
-    grid-area: payment-method;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
+    height: 100px;
+
+    .trip-total {
+      width: 80%;
+      height: 34%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      color: black;
+      background: white;
+      display: flex;
+      align-items: center;
+    }
 
     .container {
       color: black;
-      height: 80%;
+      height: 50%;
       width: 80%;
       display: flex;
+      flex-direction: column;
       background: white;
-      border-radius: 5px;
-      justify-content: space-around;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      justify-content: center;
       align-items: center;
 
       .card-info {
-        width: 85%;
+        height: 66%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -202,10 +231,10 @@
   }
   
   .main-submit {
-    grid-area: submit;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 80px;
 
     .submit-button {
       width: 80%;
@@ -218,6 +247,9 @@
       align-items: center;
     }
   }
+}
 
+.top-borders {
+  border-radius: 5px;
 }
 </style>

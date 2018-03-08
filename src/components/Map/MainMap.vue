@@ -10,26 +10,28 @@
         fullscreenControl: false,
         mapTypeControl: false, 
         zoomControl: false, 
-        streetViewControl: false, 
+        streetViewControl: false,
         styles: mapStyles
       }"
       style="width: 100%; height: 100%;">
       <gmap-marker
           :position="mapData.currentPosition"
-          :clickable="true">
+          :clickable="true"
+          v-if="mapData.showMarkers">
       </gmap-marker>
     </gmap-map>
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'MainMap',
     data () {
       return {
         mapData: {
-          currentPosition: {lat: 40.696514, lng: -73.997872},
+          currentPosition: {lat: 36.968965, lng: -122.025568},
+          showMarkers: true,
           mapCenter: null
         },
         mapStyles: [
@@ -235,9 +237,71 @@
     created () {
       this.sync()
     },
+    computed: {
+      ...mapGetters([
+        'getStartLocation',
+        'getEndLocation',
+        'getGenerateRoute',
+        'getCurrentlyOnTrip'
+      ])
+    },
+    watch: {
+      'getEndLocation': {
+        handler: function (after, before) {
+          var directionsService = new window.google.maps.DirectionsService()
+          var directionsDisplay = new window.google.maps.DirectionsRenderer()
+          directionsDisplay.setMap(this.$refs.map.$mapObject)
+          var request = {
+            destination: after,
+            origin: this.mapData.currentPosition,
+            travelMode: window.google.maps.DirectionsTravelMode.DRIVING
+          }
+
+          directionsService.route(request, function (response, status) {
+            if (status === 'OK') {
+              var tripCost = response.routes[0].legs[0].distance.value / 1000 * 2.5
+              // Set the cost of the trip here
+              this.updateTripCost(tripCost)
+            } else {
+              console.log('Directions request failed due to ' + status)
+            }
+          }.bind(this))
+        }
+      },
+      'getGenerateRoute': {
+        handler: function (after, before) {
+          if (after) {
+            var directionsService = new window.google.maps.DirectionsService()
+            var directionsDisplay = new window.google.maps.DirectionsRenderer()
+            directionsDisplay.setMap(this.$refs.map.$mapObject)
+
+            var destination = this.getEndLocation
+            var origin = this.mapData.currentPosition
+
+            var request = {
+              destination: destination,
+              origin: origin,
+              travelMode: window.google.maps.DirectionsTravelMode.DRIVING
+            }
+
+            directionsService.route(request, function (response, status) {
+              if (status === 'OK') {
+                this.mapData.showMarkers = false
+                directionsDisplay.setDirections(response)
+              } else {
+                console.log('Directions request failed due to ' + status)
+              }
+            }.bind(this))
+            this.generateRoute(false)
+          }
+        }
+      }
+    },
     methods: {
       ...mapActions([
-        'updateStartLocation'
+        'updateStartLocation',
+        'updateTripCost',
+        'generateRoute'
       ]),
       getlocation () {
         if (navigator.geolocation) {
@@ -247,6 +311,7 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             }
+            this.updateStartLocation(this.mapData.mapCenter)
           })
         } else {
           console.log('this browser doesnt support geolocation and probably shouldnt be used')
@@ -260,7 +325,9 @@
       },
       sync () {
         this.mapData.mapCenter = this.mapData.currentPosition
-        this.updateStartLocation(this.mapData.mapCenter)
+        if (!this.getCurrentlyOnTrip) {
+          this.updateStartLocation(this.mapData.mapCenter)
+        }
       }
     }
   }

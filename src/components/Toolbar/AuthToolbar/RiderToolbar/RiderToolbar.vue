@@ -77,7 +77,8 @@
 
 <style lang="scss" scoped>
 .user-height {
-  height: 250px;
+  height: 350px;
+  max-height: 45vh;
 }
 
 .friends-height {

@@ -33,7 +33,11 @@
       </div>
       <div class="payments">
         <i class="fa fa-cc-visa"></i>
-        <span>Payment</span>
+        <span>Payment Methods</span>
+      </div>
+      <div class="vehicle-information">
+        <i class="fa fa-car"></i>
+        <span>Vehicle Information</span>
       </div>
       <div class="ride-history">
         <i class="fa fa-history"></i>
@@ -45,7 +49,7 @@
       </div>
       <div class="permissions">
         <i class="fa fa-bell"></i>
-        <span>Application Permissionss</span>
+        <span>Application Permissions</span>
       </div>
       <div class="sign-out">
         <div @click="toggleMessages">
@@ -96,12 +100,12 @@
   grid-template-areas:  "settings"
                         "profile"
                         "payments"
+                        "vehicle"
                         "ride-history"
                         "permissions"
                         "about"
                         "sign-out";
-  grid-template-rows: 120px 100px 60px 60px 60px 60px 1fr;
-  grid-template-columns: 100%;
+  grid-template-rows: 120px 100px 60px 60px 60px 60px 60px 1fr;
 
   .settings {
     grid-area: settings;
@@ -151,6 +155,22 @@
 
   .payments {
     grid-area: payments;
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    i {
+      width: 60px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .vehicle-information {
+    grid-area: vehicle;
     height: 60px;
     display: flex;
     justify-content: left;
