@@ -38,7 +38,14 @@
         This is the ride history page.
       </div>
       <div class="about">
-        This is the about page.
+        <span>This is the&nbsp;</span>
+        <router-link to="about">        
+          <span>about</span>
+        </router-link>
+         <span>&nbsp;page.</span>
+      </div>
+      <div class="documents">
+        This has vehicle information.
       </div>
       <div class="sign-out">
         This is to sign out.
@@ -72,8 +79,9 @@
                         "payments"
                         "ride-history"
                         "about"
+                        "documents"
                         "sign-out";
-  grid-template-rows: 80px 100px 75px 60px 60px 1fr;
+  grid-template-rows: 80px 100px 75px 60px 60px 60px 1fr;
   grid-template-columns: 100%;
 
   .settings {
@@ -126,6 +134,19 @@
 
   .about {
     grid-area: about;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      color: white;
+    }
+  }
+
+  .documents {
+    grid-area: documents;
+    background-color: teal;  
   }
 
   .sign-out {
