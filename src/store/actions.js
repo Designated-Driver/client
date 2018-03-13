@@ -8,6 +8,13 @@ export default {
           'fullName': payload.fullName,
           'email': payload.email
         })
+        firebase.auth().currentUser.updateProfile({
+          displayName: payload.fullName,
+          email: payload.email
+        }).then(() => {
+          commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
+          commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
+        })
         commit('SET_AUTH_STATE', true) // Update this to provide more information to the state
       }).catch(err => {
         console.log(err)
@@ -16,6 +23,8 @@ export default {
   loginUser: function ({commit, dispatch, state}, payload) {
     return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
       // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
+      commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
+      commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
       commit('SET_AUTH_STATE', true)
       messaging.getToken().then(token => {
         console.log(`The token is ${token}`)

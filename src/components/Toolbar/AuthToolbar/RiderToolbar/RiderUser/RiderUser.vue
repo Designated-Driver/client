@@ -10,25 +10,19 @@
       </div>
       <div class="profile">
         <div class="prof-box">
-        <div class="image">
-          <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
-        </div>
-        <div class="text">
-          <div class="name">
-            <span>
-            Anjali k.
-            </span>
+          <div class="image">
+            <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
           </div>
-          <div class="email">
-            <span>
-            anjali@email.com
-            </span>
-          </div>
-          <div class="phone">
-            <span>
-            (012) 123-1234
-            </span>
-          </div>
+          <div class="text">
+            <div class="name">
+              <span>{{getDisplayName}}</span>
+            </div>
+            <div class="email">
+              <span>{{getDisplayEmail}}</span>
+            </div>
+            <div class="phone" v-if="getDisplayPhoneNumber">
+              <span>{{getDisplayPhoneNumber}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -56,8 +50,16 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    name: 'RiderUser'
+    name: 'RiderUser',
+    computed: {
+      ...mapGetters([
+        'getDisplayName',
+        'getDisplayEmail',
+        'getDisplayPhoneNumber'
+      ])
+    }
   }
 </script>
 

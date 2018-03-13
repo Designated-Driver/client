@@ -16,17 +16,17 @@
         <div class="text">
           <div class="name">
             <span>
-            Anjali k.
+            {{getDisplayName}}
             </span>
           </div>
           <div class="email">
             <span>
-            anjali@email.com
+            {{getDisplayEmail}}
             </span>
           </div>
-          <div class="phone">
+          <div class="phone" v-if="getDisplayPhoneNumber">
             <span>
-            (012) 123-1234
+            {{getDisplayPhoneNumber}}
             </span>
           </div>
         </div>
@@ -64,9 +64,16 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'RiderSettings',
+    computed: {
+      ...mapGetters([
+        'getDisplayName',
+        'getDisplayEmail',
+        'getDisplayPhoneNumber'
+      ])
+    },
     methods: {
       ...mapActions([
         'logoutUser',

@@ -2,6 +2,15 @@ export default {
   getAuthState: function (state) {
     return state.authState
   },
+  getDisplayName: function (state) {
+    return state.auth.displayName
+  },
+  getDisplayEmail: function (state) {
+    return state.auth.email
+  },
+  getDisplayPhoneNumber: function (state) {
+    return state.auth.phoneNumber
+  },
   getShowAboutPage: function (state) {
     return state.showAboutPage
   },
