@@ -111,6 +111,7 @@
                         "ride-history"
                         "permissions"
                         "about"
+                        "documents"
                         "sign-out";
   grid-template-rows: 120px 100px 60px 60px 60px 60px 60px 1fr;
 
