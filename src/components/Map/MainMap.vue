@@ -232,9 +232,10 @@
       }
     },
     mounted () {
-      this.getlocation()
+      this.sync()
     },
     created () {
+      this.getlocation()
       this.sync()
     },
     computed: {
@@ -304,13 +305,16 @@
         'generateRoute'
       ]),
       getlocation () {
+        console.log('getting a new thing on new load')
         if (navigator.geolocation) {
+          console.log('getting the geolocation')
           navigator.geolocation.getCurrentPosition((position) => {
             console.log(`Updating geolation to ${position.coords.latitude}, ${position.coords.longitude}`)
             this.mapData.mapCenter = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             }
+            console.log(this.mapData.mapCenter)
             this.updateStartLocation(this.mapData.mapCenter)
           })
         } else {
@@ -326,6 +330,8 @@
       sync () {
         this.mapData.mapCenter = this.mapData.currentPosition
         if (!this.getCurrentlyOnTrip) {
+          console.log('syncing with new data')
+          console.log(this.mapData.mapCenter)
           this.updateStartLocation(this.mapData.mapCenter)
         }
       }
