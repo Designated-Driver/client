@@ -21,7 +21,7 @@
         </div>  
         <div class="container" :class="{'top-borders': !getTripCost}">      
           <div class="card-info">
-            <div @click="addCard">Add Payment</div>          
+            <div @click="addCard">Add Payments</div>          
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@
       align-items: center;
 
       .card-info {
-        height: 90%;
+        height: 66%;
         background: white;
         color: black;        
         display: flex;

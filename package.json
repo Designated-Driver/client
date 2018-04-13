@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "braintree-web-drop-in": "^1.10.0",
     "firebase": "^4.9.1",
     "gravatar": "^1.6.0",
     "vue": "^2.5.2",
