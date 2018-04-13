@@ -20,13 +20,11 @@
           <span>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>    
         </div>  
         <div class="container" :class="{'top-borders': !getTripCost}">      
+          <div class="card-info">
+            <div @click="addCard">Add Payment</div>          
+          </div>
         </div>
       </div>
-      <form action="/card">
-      <div class="main-submit">
-        <div class="submit-button">Add Card Info</div>
-      </div>
-      </form>
       <div class="main-submit">
         <div @click="requestRide" class="submit-button">Request Ride</div>
       </div>
@@ -79,7 +77,7 @@
         // })
       },
       addCard: function () {
-
+        this.$router.push('/card')
       },
 
       setPlace: function (place) {
@@ -201,7 +199,9 @@
       align-items: center;
 
       .card-info {
-        height: 66%;
+        height: 90%;
+        background: white;
+        color: black;        
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -214,12 +214,6 @@
             max-height: 20px;
             max-width: 35px;
           }
-        }
-
-        span {
-          flex-grow: 1;
-          font-family: Quantico;
-          padding-left: 10px;
         }
       }
 
