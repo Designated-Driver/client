@@ -62,8 +62,8 @@
         }
 
         // if PayPal enabled, add to options settings
-        if (this.enableGooglePay) {
-          dropinOptions.googlePay = {
+        if (this.enablePayPal) {
+          dropinOptions.paypal = {
             flow: 'vault'
           }
         }
