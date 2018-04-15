@@ -36,7 +36,7 @@
     methods: {
       clickProfile: function () {
         this.toolbar.showToolbar = false
-        this.toolbar.showSettings = true
+        this.toolbar.showProfile = true
       },
       clickSettings: function () {
         this.toolbar.showToolbar = false
