@@ -1,15 +1,25 @@
 <template>
-  <div :class="wrapperClass">
+<div>
+  <div class="home">
+    <main-map/>
+    <toolbar/>
+  </div>
+    <div :class="wrapperClass">
     <div id="dropin-container"></div>
 
     <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Drop-in Test</button>
   </div>
-</template>
+
+  </div>
+ </template>
 
 <script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script> 
-
 <script>
+  import Toolbar from './Toolbar/Toolbar'
+  import MainMap from './Map/MainMap'
   export default {
+    name: 'home',
+    components: {Toolbar, MainMap},
     props: {
       authToken: {
         value: String
@@ -93,3 +103,14 @@
     }
   }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss">
+.home {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+</style>
+
+

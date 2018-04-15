@@ -1,5 +1,6 @@
 <template>
 <div>
+
   <div class="home" v-show="!getShowAboutPage">
     <main-map/>
     <toolbar/>
