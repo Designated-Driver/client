@@ -1,12 +1,31 @@
 <template>
   <div id="app">
     <router-view class="router-view"></router-view>
+    <dropin
+      wrapperClass="constrain"
+      :authToken="authToken"
+      :collectCardHolderName="true"
+      :enableDataCollector="true"
+      :enableGooglePay="true"
+    >
+    </dropin>
   </div>
+
+  
 </template>
 
 <script>
+import Dropin from '@/components/Card.vue'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Dropin
+  },
+  data () {
+    return {
+      authToken: 'sandbox_fdj8fdf4_rhnyxxfd2wmyp5bn'
+    }
+  }
 }
 </script>
 
