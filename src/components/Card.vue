@@ -4,10 +4,14 @@
     <main-map/>
     <toolbar/>
   </div>
+  <br></br>
     <div :class="wrapperClass">
     <div id="dropin-container"></div>
-
-    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Drop-in Test</button>
+    
+    <center>
+    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Test to pay</button>
+    <button type="submit" style="padding-top: 1rem;" @click="goHome">Home</button>
+    </center>
   </div>
 
   </div>
@@ -15,11 +19,10 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script> 
 <script>
-  import Toolbar from './Toolbar/Toolbar'
-  import MainMap from './Map/MainMap'
+  import Toolbar from './Toolbar/CardToolbar'
   export default {
-    name: 'home',
-    components: {Toolbar, MainMap},
+    name: 'card',
+    components: {Toolbar},
     props: {
       authToken: {
         value: String
@@ -88,6 +91,9 @@
           this.dropinInstance = dropinInstance
         })
       },
+      goHome: function () {
+        this.$router.push('/')
+      },
       dropinRequestPaymentMethod: function () {
         this.dropinInstance.requestPaymentMethod((requestErr, payload) => {
           if (requestErr) {
@@ -110,6 +116,9 @@
   position: relative;
   height: 100%;
   width: 100%;
+}
+.card{
+
 }
 </style>
 
