@@ -4,7 +4,7 @@
             'settings-height': toolbar.showSettings,
             'toolbar-height': toolbar.showToolbar}">
     <driver-buttons 
-      @clickUser="clickProfile"
+      @clickProfile="clickProfile"
       @clickSettings="clickSettings"
       v-if="toolbar.showToolbar"
     />
