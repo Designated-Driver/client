@@ -1,4 +1,3 @@
-
 <template>
   <div class="rider-user">
     <div class="close-toolbar" @click="$emit('closeToolbar')">

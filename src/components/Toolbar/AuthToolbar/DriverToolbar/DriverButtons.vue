@@ -1,8 +1,8 @@
 <template>
-  <div class="driver-buttons">
-   <div class="tabs" @click="$emit('clickProfile')">
+  <div class="rider-buttons">
+    <div class="tabs" @click="$emit('clickUser')">
       <span class="tabImg">
-        <i class="fa fa-cog fa-lg"></i>
+        <i class="fa fa-user fa-lg"></i>
       </span>
       <span class="tabName">Profile</span>
     </div>
@@ -22,7 +22,7 @@
 </script>
 
 <style lang="scss" scoped>
-.driver-buttons {
+.rider-buttons {
   width: 100%;
   height: 10vh;
   display: flex;

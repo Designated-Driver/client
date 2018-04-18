@@ -1,49 +1,49 @@
 <template>
   <div class="driver-toolbar" 
-  :class="{'profile-height': toolbar.showProfile,
+  :class="{'user-height': toolbar.showUser, 
             'settings-height': toolbar.showSettings,
             'toolbar-height': toolbar.showToolbar}">
-    <driver-buttons 
-      @clickProfile="clickProfile"
+    <rider-buttons 
+      @clickUser="clickUser"
       @clickSettings="clickSettings"
       v-if="toolbar.showToolbar"
     />
-    <driver-profile 
+    <rider-user 
      @closeToolbar="closeToolbar"
-     v-else-if="toolbar.showProfile" />
-    <driver-settings 
+     v-else-if="toolbar.showUser" />
+    <rider-settings 
      @closeToolbar="closeToolbar"
      v-else-if="toolbar.showSettings" />
   </div>
 </template>
 
 <script>
-  import DriverButtons from './DriverButtons'
-  import DriverProfile from './DriverProfile/DriverProfile'
-  import DriverSetting from './DriverSetting/DriverSetting'
+  import RiderButtons from './DriverButtons'
+  import RiderUser from './DriverProfile/DriverProfile'
+  import RiderSettings from './DriverSettings/DriverSettings'
   export default {
     name: 'DriverToolbar',
-    components: { DriverButtons, DriverProfile, DriverSetting },
+    components: { RiderButtons, RiderUser, RiderSettings },
     data () {
       return {
         toolbar: {
-          showProfile: false,
+          showUser: false,
           showSettings: false,
           showToolbar: true
         }
       }
     },
     methods: {
-      clickProfile: function () {
+      clickUser: function () {
         this.toolbar.showToolbar = false
-        this.toolbar.showProfile = true
+        this.toolbar.showUser = true
       },
       clickSettings: function () {
         this.toolbar.showToolbar = false
         this.toolbar.showSettings = true
       },
       closeToolbar: function () {
-        this.toolbar.showProfile = false
+        this.toolbar.showUser = false
         this.toolbar.showSettings = false
         this.toolbar.showToolbar = true
       }
@@ -52,7 +52,7 @@
 </script>
 
 <style lang="scss" scoped>
-.profile-height {
+.user-height {
   height: 350px;
   max-height: 45vh;
 }
