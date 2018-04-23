@@ -3,6 +3,7 @@ export default {
     return state.authState
   },
   getDisplayName: function (state) {
+    console.log('rabbi')
     return state.auth.displayName
   },
   getDisplayEmail: function (state) {
@@ -10,6 +11,11 @@ export default {
   },
   getDisplayPhoneNumber: function (state) {
     return state.auth.phoneNumber
+  },
+  getDisplayPartner: function (state) {
+    console.log(state.auth.displayPartner)
+    console.log('rabbit')
+    return state.auth.displayPartner
   },
   getShowAboutPage: function (state) {
     return state.showAboutPage

@@ -17,20 +17,26 @@
       </div>
       <div class="main-payment-method">
         <div class="trip-total" v-if="getTripCost">
-          <span>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>    
-        </div>  
-        <div class="container" :class="{'top-borders': !getTripCost}">      
+          <span>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>
+        </div>
+        <div class="container" :class="{'top-borders': !getTripCost}">
           <div class="card-info">
             <div class="card-image">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1280px-Visa.svg.png" alt="card">          
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1280px-Visa.svg.png" alt="card">
             </div>
             <span>**** 4832 - Debit</span>
-            <span @click="updatePaymentMethod"><i class="fa fa-pencil"></i></span>          
+            <span @click="updatePaymentMethod"><i class="fa fa-pencil"></i></span>
           </div>
         </div>
       </div>
       <div class="main-submit">
         <div @click="requestRide" class="submit-button">Request Ride</div>
+      </div>
+      <div class="hey">
+        <ul class="navigation">
+          <li><a v-link="{ path: '/new' }">People</a></li>
+          <Home0/>
+        </ul>
       </div>
     </div>
   </div>
@@ -62,6 +68,9 @@
       ]),
       updatePaymentMethod: function () {
         console.log('open the page to update the payment methods')
+      },
+      requestCard: function () {
+      //  this.route.path(/new)
       },
       requestRide: function () {
         this.generateRoute(true)
@@ -122,7 +131,7 @@
     justify-content: center;
     align-items: center;
     height: 80px;
-    
+
     input {
       width: 80%;
       height: 40px;
@@ -152,7 +161,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
 
         &:first-child {
           border-top-left-radius: 5px;
@@ -229,7 +238,7 @@
       }
     }
   }
-  
+
   .main-submit {
     display: flex;
     justify-content: center;

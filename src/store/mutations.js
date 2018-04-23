@@ -11,6 +11,9 @@ export default {
   SET_DISPLAY_PHONE_NUMBER: function (state, phoneNumber) {
     state.auth.phoneNumber = phoneNumber
   },
+  SET_DISPLAY_PARTNER: function (state, displayPartner) {
+    state.auth.displayPartner = displayPartner
+  },
   MUTATE_SHOW_ABOUT_PAGE: function (state, val) {
     state.showAboutPage = val
   },

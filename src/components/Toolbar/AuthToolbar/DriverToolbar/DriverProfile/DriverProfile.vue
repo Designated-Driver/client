@@ -8,7 +8,7 @@
       <div class="content-header">
         <span>Profile </span>
       </div>
-      <div class="profile">
+      <div class="content-profile">
         <div class="prof-box">
           <div class="image">
             <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
@@ -17,11 +17,24 @@
             <div class="name">
               <span>{{getDisplayName}}</span>
             </div>
+            <div class="partner">
+              <span>{{getDisplayPartner}}</span>
+            </div>
             <div class="email">
               <span>{{getDisplayEmail}}</span>
             </div>
+
             <div class="phone" v-if="getDisplayPhoneNumber">
               <span>{{getDisplayPhoneNumber}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-profile">
+        <div class="prof-box">
+          <div class="text">
+            <div class="partner">
+              <span>Joe</span>
             </div>
           </div>
         </div>
@@ -56,6 +69,7 @@
     computed: {
       ...mapGetters([
         'getDisplayName',
+        'getDisplayPartner',
         'getDisplayEmail',
         'getDisplayPhoneNumber'
       ])
@@ -81,9 +95,10 @@
     grid-template-areas:
       "header_prof"
       "profile_pg"
+      "profile_pg"
       "car_info"
       "changing";
-    grid-template-rows: 5%, 30%, 30%, 20%;
+    grid-template-rows: 5%, 30%, 30%, 20%, 15%;
     grid-row-gap: 5px;
 
     .content-header {
@@ -97,7 +112,7 @@
       color: white;
     }
 
-    .profile {
+    .content-profile {
       width: 100%;
       height: 100%;
       grid-area: profile_pg;
@@ -113,7 +128,8 @@
         grid-template-areas:
           "photo" "username"
           "photo" "email"
-          "photo" "number";
+          "photo" "number"
+          "photo" "partner";
         grid-template-rows: 1fr, 1fr, 1fr;
         grid-template-columns: 15%, 1fr;
         grid-row-gap: 20px;
@@ -159,8 +175,17 @@
           display: flex;
           align-items: center;
         }
+
+        .partner {
+          grid-area: partner;
+          height: 33%;
+          display: flex;
+          align-items: center;
+        }
+
       }
     }
+
 
     .content-vehicle {
       width: 100%;
@@ -243,6 +268,8 @@
         align-items: center;
       }
     }
+
+
   }
 }
 </style>

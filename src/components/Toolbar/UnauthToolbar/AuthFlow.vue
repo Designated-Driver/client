@@ -12,7 +12,7 @@
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
           <div class="button">
-            <a @click="openAboutPage">        
+            <a @click="openAboutPage">
               <span>About This App</span>
             </a>
             <button type="submit">Sign Up</button>
@@ -39,12 +39,13 @@
             </span>
           </div>
           <div class="vue-form signup-form">
-            <input v-model="auth.fullName" type="text" placeholder="Full Name">              
+            <input v-model="auth.fullName" type="text" placeholder="Full Name">
+            <input v-model="auth.partnerName" type="text" placeholder="Partner Name">               
             <input v-model="auth.email" type="text" placeholder="Email Address">
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
           <div class="button">
-            <a @click="openAboutPage">     
+            <a @click="openAboutPage">
               <span>About This App</span>
             </a>
             <button type="submit">Sign Up</button>
@@ -136,7 +137,7 @@
           height: 40px;
           font-size: 100%;
           padding-left: 10px;
-        }      
+        }
       }
 
       .signup-form {

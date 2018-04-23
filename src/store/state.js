@@ -3,7 +3,8 @@ export default {
   auth: {
     displayName: null,
     email: null,
-    phoneNumber: null
+    phoneNumber: null,
+    displayPartner: null
   },
   showAboutPage: false,
   startLocation: {lat: 36.968965, lng: -122.025568},

@@ -1,14 +1,14 @@
 <template>
   <div class="unauth-toolbar" :style="{'height': (toolbar.showLogIn || toolbar.showSignUp) ? '350px' : '10vh' }">
-    <auth-buttons 
+    <auth-buttons
       v-if="(!toolbar.showLogIn && !toolbar.showSignUp)"
       @clickLogin="clickLogin"
       @clickSignup="clickSignUp"
     />
-    
-    <auth-flow 
+
+    <auth-flow
       v-else
-      :toolbar="toolbar" 
+      :toolbar="toolbar"
       :auth="auth"
       :showSpinner="showSpinner"
       @submitLogin="submitLogin"
@@ -35,6 +35,7 @@
           email: '',
           password: '',
           fullName: '',
+          partnerName: '',
           accountType: 'rider'
         },
         showSpinner: false
@@ -73,18 +74,19 @@
         }
       },
       submitSignUp () {
-        if (!this.auth.email || !this.auth.password || !this.auth.fullName) {
+        if (!this.auth.email || !this.auth.password || !this.auth.fullName || !this.auth.partnerName) {
           console.log('one of these fields are incomplete')
         } else if (!this.auth.email.includes('@')) {
           console.log('this auth.email doesnt contain @')
         } else {
           this.showSpinner = true
-          this.authenticateUser({'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'accountType': this.auth.accountType}).then(() => {
+          this.authenticateUser({'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'partnerName': this.auth.partnerName, 'accountType': this.auth.accountType}).then(() => {
             this.toolbar.showSignUp = false
             this.showSpinner = false
             this.auth.email = ''
             this.auth.password = ''
             this.auth.fullName = ''
+            this.auth.partnerName = ''
           }).catch(err => {
             console.log(err)
           })

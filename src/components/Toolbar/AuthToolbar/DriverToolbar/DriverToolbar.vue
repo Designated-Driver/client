@@ -1,17 +1,17 @@
 <template>
-  <div class="driver-toolbar" 
+  <div class="driver-toolbar"
   :class="{'profile-height': toolbar.showProfile,
             'settings-height': toolbar.showSettings,
             'toolbar-height': toolbar.showToolbar}">
-    <driver-buttons 
+    <driver-buttons
       @clickProfile="clickProfile"
       @clickSettings="clickSettings"
       v-if="toolbar.showToolbar"
     />
-    <driver-profile 
+    <driver-profile
      @closeToolbar="closeToolbar"
      v-else-if="toolbar.showProfile" />
-    <driver-settings 
+    <driver-settings
      @closeToolbar="closeToolbar"
      v-else-if="toolbar.showSettings" />
   </div>
@@ -53,12 +53,12 @@
 
 <style lang="scss" scoped>
 .profile-height {
-  height: 350px;
-  max-height: 45vh;
+  height: 450px;
+  max-height: 450vh;
 }
 
 .settings-height {
-  height: 100vh;
+  height: 50vh;
 }
 
 .toolbar-height {

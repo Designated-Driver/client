@@ -17,6 +17,9 @@
             <div class="name">
               <span>{{getDisplayName}}</span>
             </div>
+            <div class="name">
+              <span>{{getDisplayPartner}}</span>
+            </div>
             <div class="email">
               <span>{{getDisplayEmail}}</span>
             </div>
@@ -57,7 +60,8 @@
       ...mapGetters([
         'getDisplayName',
         'getDisplayEmail',
-        'getDisplayPhoneNumber'
+        'getDisplayPhoneNumber',
+        'getDisplayPartner'
       ])
     }
   }
