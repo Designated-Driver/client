@@ -21,7 +21,7 @@
         </div>  
         <div class="container" :class="{'top-borders': !getTripCost}">      
           <div class="card-info">
-            <div @click="addCard">Add Payments</div>          
+            <div @click="addCard">Add Payments</div>         
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
 </template>
-
+<script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script> 
 <script>
   import { mapGetters, mapActions } from 'vuex'
   // import axios from 'axios'
@@ -43,10 +43,47 @@
         'getTripCost'
       ])
     },
+    props: {
+      authToken: {
+        value: String
+      },
+      wrapperClass: {
+        value: String
+      },
+      loaderClass: {
+        value: String
+      },
+      inputClass: {
+        value: String
+      },
+      collectCardHolderName: {
+        value: Boolean
+      },
+      collectPostalCode: {
+        value: Boolean
+      },
+      enableDataCollector: {
+        value: Boolean
+      },
+      enablePayPal: {
+        value: Boolean
+      }
+    },
+    created () {
+      this.dropinCreate()
+
+      this.$parent.$on('tokenize', () => {
+        this.dropinRequestPaymentMethod()
+      })
+    },
     data () {
       return {
         destination: '',
-        numPeople: 1
+        numPeople: 1,
+        errorMessage: '',
+        dropinInstance: '',
+        paymentPayload: '',
+        dataCollectorPayload: ''
       }
     },
     methods: {
@@ -96,6 +133,51 @@
           // Do some code here
         }
       }
+    },
+    dropinCreate () {
+      const dropin = require('braintree-web-drop-in')
+
+      // setup drop-in options
+      const dropinOptions = {
+        authorization: this.authToken,
+        selector: '#dropin-container'
+      }
+
+      // if PayPal enabled, add to options settings
+      if (this.enablePayPal) {
+        dropinOptions.paypal = {
+          flow: 'vault'
+        }
+      }
+
+      dropin.create(dropinOptions, (dropinError, dropinInstance) => {
+        if (dropinError) {
+          this.errorMessage = 'There was an error setting up the client instance. Message: ' + dropinError.message
+          this.$emit('bt.error', this.errorMessage)
+          return
+        }
+
+        this.dropinInstance = dropinInstance
+      })
+    },
+    goHome: function () {
+      this.$router.push('/')
+    },
+    confirm: function () {
+      var popup = document.getElementById('popupp')
+      popup.classList.toggle('show')
+    },
+    dropinRequestPaymentMethod: function () {
+      this.dropinInstance.requestPaymentMethod((requestErr, payload) => {
+        if (requestErr) {
+          this.errorMessage = 'There was an error setting up the client instance. Message: ' + requestErr.message
+          this.$emit('bt.error', this.errorMessage)
+          return
+        }
+
+        this.paymentPayload = payload
+        // do something with the payload/nonce
+      })
     }
   }
 </script>
@@ -248,5 +330,67 @@
 
 .top-borders {
   border-radius: 5px;
+}
+.card{
+  padding-top: 1rem;
+  width: 50%;
+  position:absolute;
+  margin-left:350px;
+
+}
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 50%;
+    height:50%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
 }
 </style>

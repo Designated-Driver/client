@@ -27,9 +27,9 @@
   </div>
  </template>
 
-<script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script> 
+<script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script>
+<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script> 
 <script>
-  import Toolbar from './Toolbar/CardToolbar'
   import { mapGetters } from 'vuex'
   export default {
     name: 'card',
@@ -39,7 +39,6 @@
       ])
 
     },
-    components: {Toolbar},
     props: {
       authToken: {
         value: String
