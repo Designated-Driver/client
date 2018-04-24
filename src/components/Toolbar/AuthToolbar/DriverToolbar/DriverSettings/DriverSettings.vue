@@ -31,9 +31,9 @@
           </div>
         </div>
       </div>
-      <div class="payments">
+      <div class="card-info">
         <i class="fa fa-cc-visa"></i>
-        <span>Payment Methods</span>
+        <span>Card Methods</span>
       </div>
       <div class="vehicle-information">
         <i class="fa fa-car"></i>
@@ -161,7 +161,7 @@
     }
   }
 
-  .payments {
+  .card-info {
     grid-area: payments;
     height: 60px;
     display: flex;

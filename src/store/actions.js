@@ -14,6 +14,9 @@ export default {
         }).then(() => {
           commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
           commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
+          commit('SET_DISPLAY_car_make', firebase.auth().currentUser.carMake)
+          commit('SET_DISPLAY_car_model', firebase.auth().currentUser.carModel)
+          commit('SET_DISPLAY_car_year', firebase.auth().currentUser.carYear)
         })
         commit('SET_AUTH_STATE', true) // Update this to provide more information to the state
       }).catch(err => {
@@ -25,6 +28,9 @@ export default {
       // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
       commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
       commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
+      commit('SET_DISPLAY_car_make', firebase.auth().currentUser.carMake)
+      commit('SET_DISPLAY_car_model', firebase.auth().currentUser.carModel)
+      commit('SET_DISPLAY_car_year', firebase.auth().currentUser.carYear)
       commit('SET_AUTH_STATE', true)
       messaging.getToken().then(token => {
         console.log(`The token is ${token}`)

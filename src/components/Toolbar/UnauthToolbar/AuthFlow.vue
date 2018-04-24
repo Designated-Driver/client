@@ -42,6 +42,10 @@
             <input v-model="auth.fullName" type="text" placeholder="Full Name">              
             <input v-model="auth.email" type="text" placeholder="Email Address">
             <input v-model="auth.password" type="password" placeholder="Password">
+            Car Information:
+            <input v-model="auth.carMake" type="text" placeholder="Car Make"> 
+            <input v-model="auth.carModel" type="text" placeholder="Car Model"> 
+            <input v-model="auth.carYear" type="text" placeholder="car Year"> 
           </div>
           <div class="button">
             <a @click="openAboutPage">     
@@ -140,7 +144,7 @@
       }
 
       .signup-form {
-        height: 150px;
+        height: 200px;
       }
 
       .login-form {

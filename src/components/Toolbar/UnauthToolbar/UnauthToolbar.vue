@@ -35,6 +35,9 @@
           email: '',
           password: '',
           fullName: '',
+          carMake: '',
+          carModel: '',
+          carYear: '',
           accountType: 'rider'
         },
         showSpinner: false

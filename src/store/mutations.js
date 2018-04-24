@@ -11,6 +11,17 @@ export default {
   SET_DISPLAY_PHONE_NUMBER: function (state, phoneNumber) {
     state.auth.phoneNumber = phoneNumber
   },
+
+  SET_DISPLAY_car_make: function (state, carMake) {
+    state.auth.carMake = carMake
+  },
+  SET_DISPLAY_car_model: function (state, carModel) {
+    state.auth.carModel = carModel
+  },
+  SET_DISPLAY_car_year: function (state, carYear) {
+    state.auth.carYear = carYear
+  },
+
   MUTATE_SHOW_ABOUT_PAGE: function (state, val) {
     state.showAboutPage = val
   },
