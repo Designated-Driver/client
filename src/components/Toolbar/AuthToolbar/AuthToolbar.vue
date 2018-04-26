@@ -13,8 +13,8 @@
     components: { RiderToolbar, DriverToolbar },
     data () {
       return {
-        showDriverToolbar: true,
-        showRiderToolbar: false
+        showDriverToolbar: false,
+        showRiderToolbar: true
       }
     }
   }

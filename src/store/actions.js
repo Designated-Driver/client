@@ -6,14 +6,17 @@ export default {
       .then(user => {
         firebase.database().ref(`/users/online/${payload.accountType}s/currentlyIdle/${firebase.auth().currentUser.uid}`).set({
           'fullName': payload.fullName,
-          'email': payload.email
+          'email': payload.email,
+          'idnumber': payload.idnumber
         })
         firebase.auth().currentUser.updateProfile({
           displayName: payload.fullName,
-          email: payload.email
+          email: payload.email,
+          idnumber: payload.idnumber
         }).then(() => {
           commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
           commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
+          commit('SET_DISPLAY_IDNUMBER', firebase.auth().currentUser.idnumber)
         })
         commit('SET_AUTH_STATE', true) // Update this to provide more information to the state
       }).catch(err => {
@@ -25,6 +28,7 @@ export default {
       // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
       commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
       commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
+      commit('SET_DISPLAY_IDNUMBER', firebase.auth().currentUser.idnumber)
       commit('SET_AUTH_STATE', true)
       messaging.getToken().then(token => {
         console.log(`The token is ${token}`)

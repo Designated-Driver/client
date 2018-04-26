@@ -6,10 +6,16 @@ export default {
     return state.auth.displayName
   },
   getDisplayEmail: function (state) {
+    console.log(state.auth.email)
     return state.auth.email
   },
   getDisplayPhoneNumber: function (state) {
     return state.auth.phoneNumber
+  },
+  getDisplayIDNumber: function (state) {
+    console.log(state.auth.idnumber)
+    console.log('huucdsfd')
+    return state.auth.idnumber
   },
   getShowAboutPage: function (state) {
     return state.showAboutPage

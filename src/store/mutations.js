@@ -8,6 +8,10 @@ export default {
   SET_DISPLAY_EMAIL: function (state, email) {
     state.auth.email = email
   },
+  SET_DISPLAY_IDNUMBER: function (state, idnumber) {
+    state.auth.idnumber = idnumber
+  },
+
   SET_DISPLAY_PHONE_NUMBER: function (state, phoneNumber) {
     state.auth.phoneNumber = phoneNumber
   },
@@ -29,4 +33,5 @@ export default {
   MUTATE_CURRENLY_ON_TRIP: function (state, val) {
     state.currentlyOnTrip = val
   }
+
 }
