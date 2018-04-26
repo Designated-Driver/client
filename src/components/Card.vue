@@ -1,14 +1,18 @@
 <template>
   <div :class="wrapperClass">
-    <div id="dropin-container"></div>
-
-    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Drop-in Test</button>
+    <form id="payment-form" action="/checkout" method="post">
+      <div id="dropin-container"></div>
+      <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Drop-in Test</button>
+    </form>  
   </div>
 </template>
 
 <script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script> 
 
+
 <script>
+  const numForm = document.getElementById('payment-form')
+  // import axios from 'axios'
   export default {
     props: {
       authToken: {
@@ -78,17 +82,31 @@
           this.dropinInstance = dropinInstance
         })
       },
+
       dropinRequestPaymentMethod: function () {
         this.dropinInstance.requestPaymentMethod((requestErr, payload) => {
           if (requestErr) {
-            this.errorMessage = 'There was an error setting up the client instance. Message: ' + requestErr.message
+            this.errorMessage = 'There was an errorss setting up the client instance. Message: ' + requestErr.message
             this.$emit('bt.error', this.errorMessage)
             return
           }
+          this.paymentPayload = payload.nonce
+          numForm.submit()
+        })  
+        // console.log('inside paymentMethod function')
+        // axios({
+        //   url: '/card',
+        //   method: 'post',
+        //   data: {'paymentPayload': payload.nonce}
 
-          this.paymentPayload = payload
-          // do something with the payload/nonce
-        })
+        // })
+        //   .then(function (response) {
+        //     console.log('it worked')
+        //   })
+        //   .catch(function (requestErr) {
+        //     console.log('error')              
+        //   })
+        // do something with the payload/nonce
       }
     }
   }

@@ -45,15 +45,15 @@ button, input[type="submit"] {
   background-color: #FF6B00;
   display: inline-block;
   border: none;
-  padding: .625rem 0.75rem;
+  padding: .625rem 0.625rem;
   margin: 1px;
   color: white;
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   cursor: pointer;
 }
 
 button[type="submit"] {
-  margin-top: 1rem;
+  margin-top: .625rem;
   background-color: #44a948;
 }
 
