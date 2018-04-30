@@ -6,7 +6,10 @@ export default {
       .then(user => {
         firebase.database().ref(`/users/online/${payload.accountType}s/currentlyIdle/${firebase.auth().currentUser.uid}`).set({
           'fullName': payload.fullName,
-          'email': payload.email
+          'email': payload.email,
+          'carMake': payload.carMake,
+          'carModel': payload.carModel,
+          'carYear': payload.carYear
         })
         firebase.auth().currentUser.updateProfile({
           displayName: payload.fullName,

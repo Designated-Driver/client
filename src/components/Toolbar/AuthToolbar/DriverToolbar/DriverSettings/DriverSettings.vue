@@ -23,7 +23,11 @@
             <span>
             {{getDisplayEmail}}
             </span>
-          
+          </div>
+          <div class="car">
+            <span>
+            {{getDisplayCarMake}}
+            </span>
           </div>
           <div class="phone" v-if="getDisplayPhoneNumber">
             <span>
@@ -154,7 +158,7 @@
       height: 100%;
       flex-grow: 1;
 
-      .name, .email, .phone, .make {
+      .name, .email, .phone, .car {
         height: 33%;
         display: flex;
         align-items: center;
