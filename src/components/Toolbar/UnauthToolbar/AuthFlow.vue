@@ -45,7 +45,7 @@
             Car Information:
             <input v-model="auth.carMake" type="text" placeholder="Car Make"> 
             <input v-model="auth.carModel" type="text" placeholder="Car Model"> 
-            <input v-model="auth.carYear" type="text" placeholder="car Year"> 
+            <input v-model="auth.carYear" type="text" placeholder="Car Year"> 
           </div>
           <div class="button">
             <a @click="openAboutPage">     

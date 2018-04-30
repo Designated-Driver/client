@@ -11,7 +11,6 @@ export default {
   getDisplayPhoneNumber: function (state) {
     return state.auth.phoneNumber
   },
-
   getDisplayCarMake: function (state) {
     return state.auth.carMake
   },
@@ -21,7 +20,6 @@ export default {
   getDisplayCarYear: function (state) {
     return state.auth.carYear
   },
-
   getShowAboutPage: function (state) {
     return state.showAboutPage
   },

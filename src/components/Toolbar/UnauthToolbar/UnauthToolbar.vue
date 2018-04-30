@@ -76,18 +76,21 @@
         }
       },
       submitSignUp () {
-        if (!this.auth.email || !this.auth.password || !this.auth.fullName) {
+        if (!this.auth.email || !this.auth.password || !this.auth.fullName || !this.auth.carMake || !this.auth.carModel || !this.auth.carYear) {
           console.log('one of these fields are incomplete')
         } else if (!this.auth.email.includes('@')) {
           console.log('this auth.email doesnt contain @')
         } else {
           this.showSpinner = true
-          this.authenticateUser({'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'accountType': this.auth.accountType}).then(() => {
+          this.authenticateUser({'carMake': this.auth.carMake, 'carModel': this.auth.carModel, 'carYear': this.auth.carYear, 'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'accountType': this.auth.accountType}).then(() => {
             this.toolbar.showSignUp = false
             this.showSpinner = false
             this.auth.email = ''
             this.auth.password = ''
             this.auth.fullName = ''
+            this.auth.carMake = ''
+            this.auth.carModel = ''
+            this.auth.carYear = ''
           }).catch(err => {
             console.log(err)
           })

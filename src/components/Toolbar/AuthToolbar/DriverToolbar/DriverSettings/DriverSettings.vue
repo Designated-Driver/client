@@ -23,6 +23,7 @@
             <span>
             {{getDisplayEmail}}
             </span>
+          
           </div>
           <div class="phone" v-if="getDisplayPhoneNumber">
             <span>
@@ -71,7 +72,10 @@
       ...mapGetters([
         'getDisplayName',
         'getDisplayEmail',
-        'getDisplayPhoneNumber'
+        'getDisplayPhoneNumber',
+        'getDisplayCarMake',
+        'getDisplayCarModel',
+        'getDisplayCarYear'
       ])
     },
     methods: {
@@ -150,7 +154,7 @@
       height: 100%;
       flex-grow: 1;
 
-      .name, .email, .phone {
+      .name, .email, .phone, .make {
         height: 33%;
         display: flex;
         align-items: center;
