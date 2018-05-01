@@ -24,14 +24,14 @@
             {{getDisplayEmail}}
             </span>
           </div>
-          <div class="car">
-            <span>
-            {{getDisplayCarMake}}
-            </span>
-          </div>
           <div class="phone" v-if="getDisplayPhoneNumber">
             <span>
             {{getDisplayPhoneNumber}}
+            </span>
+          </div>
+          <div class="car">
+            <span>
+            {{getDisplayCarMake}}
             </span>
           </div>
         </div>

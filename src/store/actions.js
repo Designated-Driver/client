@@ -4,27 +4,25 @@ export default {
   authenticateUser: function ({commit, dispatch, state}, payload) {
     return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(user => {
-        firebase.database().ref(`/users/online/${payload.accountType}s/currentlyIdle/${firebase.auth().currentUser.uid}`).set({
+        firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).set({
           'fullName': payload.fullName,
           'email': payload.email,
+          'accountType': payload.accountType,
           'carMake': payload.carMake,
           'carModel': payload.carModel,
           'carYear': payload.carYear
         })
         firebase.auth().currentUser.updateProfile({
           displayName: payload.fullName,
-          email: payload.email,
-          carMake: payload.carMake,
-          carModel: payload.carModel,
-          carYear: payload.carYear
-        }).then(() => {
-          commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
-          commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
-          commit('SET_DISPLAY_CAR_MAKE', firebase.auth().currentUser.carMake)
-          commit('SET_DISPLAY_CAR_MODEL', firebase.auth().currentUser.carModel)
-          commit('SET_DISPLAY_CAR_YEAR', firebase.auth().currentUser.carYear)
+          email: payload.email
         })
         commit('SET_AUTH_STATE', true) // Update this to provide more information to the state
+        commit('SET_DISPLAY_ACCOUNT', payload.accountType)
+        commit('SET_DISPLAY_CAR_MAKE', payload.carMake)
+        commit('SET_DISPLAY_CAR_MODEL', payload.carModel)
+        commit('SET_DISPLAY_CAR_YEAR', payload.carYear)
+        commit('SET_DISPLAY_NAME', payload.fullName)
+        commit('SET_DISPLAY_EMAIL', payload.email)
       }).catch(err => {
         console.log(err)
       })
@@ -32,11 +30,14 @@ export default {
   loginUser: function ({commit, dispatch, state}, payload) {
     return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
       // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
+      firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
+        commit('SET_DISPLAY_ACOUNT', snapshot.val().accountType)
+        commit('SET_DISPLAY_CAR_MAKE', snapshot.val().carMake)
+        commit('SET_DISPLAY_CAR_MODEL', snapshot.val().carModel)
+        commit('SET_DISPLAY_CAR_YEAR', snapshot.val().carYear)
+      })
       commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
       commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
-      commit('SET_DISPLAY_CAR_MAKE', firebase.auth().currentUser.carMake)
-      commit('SET_DISPLAY_CAR_MODEL', firebase.auth().currentUser.carModel)
-      commit('SET_DISPLAY_CAR_YEAR', firebase.auth().currentUser.carYear)
       commit('SET_AUTH_STATE', true)
       messaging.getToken().then(token => {
         console.log(`The token is ${token}`)

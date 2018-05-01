@@ -4,6 +4,7 @@ export default {
     displayName: null,
     email: null,
     phoneNumber: null,
+    accountType: null,
     carMake: null,
     carModel: null,
     carYear: null

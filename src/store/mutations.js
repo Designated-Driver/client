@@ -8,6 +8,9 @@ export default {
   SET_DISPLAY_EMAIL: function (state, email) {
     state.auth.email = email
   },
+  SET_DISPLAY_ACCOUNT: function (state, accountType) {
+    state.auth.accountType = accountType
+  },
   SET_DISPLAY_PHONE_NUMBER: function (state, phoneNumber) {
     state.auth.phoneNumber = phoneNumber
   },

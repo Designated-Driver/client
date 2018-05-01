@@ -8,6 +8,9 @@ export default {
   getDisplayEmail: function (state) {
     return state.auth.email
   },
+  getDisplayAccountType: function (state) {
+    return state.auth.accountType
+  },
   getDisplayPhoneNumber: function (state) {
     return state.auth.phoneNumber
   },
