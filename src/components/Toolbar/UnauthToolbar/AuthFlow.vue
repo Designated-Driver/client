@@ -42,6 +42,7 @@
             <input v-model="auth.fullName" type="text" placeholder="Full Name">              
             <input v-model="auth.email" type="text" placeholder="Email Address">
             <input v-model="auth.password" type="password" placeholder="Password">
+            <input v-model="auth.ID" type="text" placeholder="ID number"> 
             Car Information:
             <input v-model="auth.carMake" type="text" placeholder="Car Make"> 
             <input v-model="auth.carModel" type="text" placeholder="Car Model"> 

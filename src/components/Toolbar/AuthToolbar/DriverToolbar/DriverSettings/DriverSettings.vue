@@ -22,6 +22,7 @@
           <div class="email">
             <span>
             {{getDisplayEmail}}
+            {{getDisplayID}}
             </span>
           </div>
           <div class="phone" v-if="getDisplayPhoneNumber">
@@ -88,7 +89,8 @@
         'getDisplayPhoneNumber',
         'getDisplayCarMake',
         'getDisplayCarModel',
-        'getDisplayCarYear'
+        'getDisplayCarYear',
+        'getDisplayID'
       ])
     },
     methods: {

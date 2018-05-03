@@ -23,6 +23,9 @@ export default {
   SET_DISPLAY_CAR_YEAR: function (state, carYear) {
     state.auth.carYear = carYear
   },
+  SET_DISPLAY_ID: function (state, ID) {
+    state.auth.ID = ID
+  },
   MUTATE_SHOW_ABOUT_PAGE: function (state, val) {
     state.showAboutPage = val
   },

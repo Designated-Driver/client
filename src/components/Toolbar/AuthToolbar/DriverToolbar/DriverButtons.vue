@@ -28,7 +28,7 @@
   display: flex;
 
   .tabs {
-    width: 25%;
+    width: 50%;
     font-size: 13px;
     display: flex;
     flex-direction: column;

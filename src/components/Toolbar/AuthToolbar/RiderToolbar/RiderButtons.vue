@@ -6,12 +6,6 @@
       </span>
       <span class="tabName">Profile</span>
     </div>
-    <div class="tabs" @click="$emit('clickFriends')">
-      <span class="tabImg">
-        <i class="fa fa-address-book fa-lg"></i>
-      </span>
-      <span class="tabName">Friends</span>
-    </div>
     <div class="tabs" @click="$emit('clickRequestRide')">
       <span class="tabImg">
         <i class="fa fa-car fa-lg"></i>
@@ -40,7 +34,7 @@
   display: flex;
 
   .tabs {
-    width: 25%;
+    width: 33%;
     font-size: 13px;
     display: flex;
     flex-direction: column;

@@ -7,7 +7,8 @@ export default {
     accountType: null,
     carMake: null,
     carModel: null,
-    carYear: null
+    carYear: null,
+    ID: null
   },
   showAboutPage: false,
   startLocation: {lat: 36.968965, lng: -122.025568},

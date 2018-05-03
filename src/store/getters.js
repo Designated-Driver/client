@@ -23,6 +23,9 @@ export default {
   getDisplayCarYear: function (state) {
     return state.auth.carYear
   },
+  getDisplayID: function (state) {
+    return state.auth.ID
+  },
   getShowAboutPage: function (state) {
     return state.showAboutPage
   },
