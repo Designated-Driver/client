@@ -1,16 +1,30 @@
 <template>
+<center>
+<div class="card">
+<br></br>
+<div class="trip-total" v-if="getTripCost">
+          <p>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</p>    
+        </div> 
   <div :class="wrapperClass">
     <div id="dropin-container"></div>
-    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Drop-in Test</button>
+    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Test Payment</button>
   </div>
+  </div>
+  </center>
 </template>
 
 <script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script> 
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
+  computed: {
+    ...mapGetters([
+      'getTripCost'
+    ])
+  },
   props: {
     authToken: {
       value: String
@@ -104,3 +118,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.card{
+  width: 50%;
+}
+.card p{
+
+}
+</style>
