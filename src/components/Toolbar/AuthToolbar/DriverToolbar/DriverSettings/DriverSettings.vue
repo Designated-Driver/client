@@ -29,11 +29,6 @@
             {{getDisplayPhoneNumber}}
             </span>
           </div>
-          <div class="car">
-            <span>
-            {{getDisplayCarMake}}
-            </span>
-          </div>
         </div>
       </div>
       <div class="card-info">
@@ -41,8 +36,22 @@
         <span>Card Methods</span>
       </div>
       <div class="vehicle-information">
-        <i class="fa fa-car"></i>
-        <span>Vehicle Information</span>
+        <div class="car-title">
+          <i class="fa fa-car"></i>
+          <h1>Vehicle Information</h1>
+        </div>
+        <div class="vehi-info">
+          <div class="car-make">
+            {{getDisplayCarMake}}
+          </div>
+          <div class="car-model">
+            {{getDisplayCarModel}}
+          </div>
+          <div class="car-year">
+            {{getDisplayCarYear}}
+          </div>
+
+        </div>
       </div>
       <div class="ride-history">
         <i class="fa fa-history"></i>
@@ -158,7 +167,7 @@
       height: 100%;
       flex-grow: 1;
 
-      .name, .email, .phone, .car {
+      .name, .email, .phone {
         height: 33%;
         display: flex;
         align-items: center;
@@ -170,6 +179,7 @@
   }
 
   .card-info {
+    
     grid-area: payments;
     height: 60px;
     display: flex;
@@ -187,17 +197,67 @@
 
   .vehicle-information {
     grid-area: vehicle;
-    height: 60px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
 
-    i {
-      width: 60px;
-      height: 100%;
+    .car-title{
+      width: 100%;
       display: flex;
+      justify-content: left;
+      align-item: center;
+      i {
+        width: 60px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    
+    .vehi-info{
+      height: 70%;
+      width: 80%;
+      display: flex;
+      background: white;
       justify-content: center;
       align-items: center;
+      color: black;
+      border-radius: 5px;
+      grid-template-areas: "car-type" "car-model" "car-year";
+      grid-template-columns: 33%, 33%, 33%;
+    
+      .car-make {
+        width: 100%;
+        height: 100%;
+        grid-area: car-type;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .car-model {
+        grid-area: car-model;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .car-year {
+        grid-area: car-year;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 

@@ -28,17 +28,15 @@
       <div class="content-vehicle">
         <div class="veh-box">
           <div class="Brand">
-            <span>Toyota</span>
+            <span>{{getDisplayCarMake}}</span>
           </div>
           <div class="Model">
-            <span>Corolla</span>
+            <span>{{getDisplayCarModel}}</span>
           </div>
           <div class="Year">
-            <span>2018</span>
+            <span>{{getDisplayCarYear}}</span>
           </div>
-           <div class="Seats">
-            <span>5</span>
-          </div>
+           
         </div>
       </div>
      <div class="content-update">
@@ -56,7 +54,10 @@
       ...mapGetters([
         'getDisplayName',
         'getDisplayEmail',
-        'getDisplayPhoneNumber'
+        'getDisplayPhoneNumber',
+        'getDisplayCarMake',
+        'getDisplayCarModel',
+        'getDisplayCarYear'
       ])
     }
   }
@@ -178,8 +179,8 @@
         background: white;
         color: black;
         border-radius: 5px;
-        grid-template-areas: "car-type" "car-model" "car-year" "car-seats";
-        grid-template-columns: 25%, 25%, 25%, 25%;
+        grid-template-areas: "car-type" "car-model" "car-year";
+        grid-template-columns: 1fr, 1fr, 1fr;
 
         .Brand {
           width: 100%;
