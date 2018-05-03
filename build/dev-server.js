@@ -10,6 +10,9 @@ if (!process.env.NODE_ENV) {
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
+const http = require('http')
+const debug = require('debug')('braintree_express_example:server')
+
 const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = process.env.NODE_ENV === 'testing'
@@ -83,7 +86,8 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-const server = app.listen(port)
+const server = http.createServer(app)
+server.listen(port)
 
 module.exports = {
   ready: readyPromise,

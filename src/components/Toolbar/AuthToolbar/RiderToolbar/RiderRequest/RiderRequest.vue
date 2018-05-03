@@ -77,6 +77,7 @@
         // })
       },
       addCard: function () {
+        console.log('going to card page')
         this.$router.push('/card')
       },
 
