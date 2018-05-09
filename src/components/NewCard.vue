@@ -1,13 +1,9 @@
 <template>
 <center>
 <div class="card">
-
-  <div class="trip-total" v-if="getTripCost">
-    <p>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</p>    
-  </div> 
   <div :class="wrapperClass">
     <div id="dropin-container"></div>
-    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Test Payment</button>
+    <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Add Card</button>
   </div>
 </div>
 </center>
@@ -17,14 +13,8 @@
 
 <script>
 import axios from 'axios'
-import { mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters([
-      'getTripCost'
-    ])
-  },
   props: {
     authToken: {
       value: String
@@ -62,32 +52,16 @@ export default {
     return {
       errorMessage: '',
       dropinInstance: '',
-      dataCollectorPayload: '',
-      authTokenTwo: '',
-      lastFour: ''
+      dataCollectorPayload: ''
     }
   },
   methods: {
     async dropinCreate () {
       const dropin = require('braintree-web-drop-in')
-     
-      let uri = 'http://localhost:8081/getClientId'
-
-      await axios({
-        url: uri,
-        method: 'get'      
-      })
-        .then((response) => {
-          this.authTokenTwo = response.data
-          console.log(response)
-        })
-        .catch((requestErr) => {
-          console.log(requestErr)              
-        })          
-
+           
       // setup drop-in options
       const dropinOptions = {
-        authorization: this.authTokenTwo,
+        authorization: this.authToken,
         selector: '#dropin-container'
       }
 
@@ -117,15 +91,15 @@ export default {
           return
         }
 
-        let uri = 'http://localhost:8081/checkout'
+        let uri = 'http://localhost:8081/createCustomerId'
         axios({
           url: uri,
           method: 'post',
           data: {'paymentPayload': payload.nonce}
         })
           .then((response) => {
-            this.lastFour = response.data
-            console.log(this.lastFour)
+            console.log(response.data)
+            this.$router.push('/')
           })
           .catch((requestErr) => {
             console.log(requestErr)              

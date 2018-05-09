@@ -15,8 +15,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-import Dropin from '@/components/Card.vue'
+import Dropin from '@/components/NewCard.vue'
 export default {
   name: 'drop-in-app',
   components: {
@@ -25,7 +24,7 @@ export default {
 
   data () {
     return {
-      authToken: ''
+      authToken: 'sandbox_fdj8fdf4_rhnyxxfd2wmyp5bn'
     }
   },
 
