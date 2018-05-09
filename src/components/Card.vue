@@ -48,16 +48,30 @@ export default {
     return {
       errorMessage: '',
       dropinInstance: '',
-      dataCollectorPayload: ''
+      dataCollectorPayload: '',
+      authTokenTwo: ''
     }
   },
   methods: {
-    dropinCreate () {
+    async dropinCreate () {
       const dropin = require('braintree-web-drop-in')
+     
+      let uri = 'http://localhost:8081/getClientId'
+
+      await axios({
+        url: uri,
+        method: 'get'      
+      })
+        .then((response) => {
+          this.authTokenTwo = response.data
+        })
+        .catch((requestErr) => {
+          console.log(requestErr)              
+        })          
 
       // setup drop-in options
       const dropinOptions = {
-        authorization: this.authToken,
+        authorization: this.authTokenTwo,
         selector: '#dropin-container'
       }
 
@@ -93,11 +107,11 @@ export default {
           method: 'post',
           data: {'paymentPayload': payload.nonce}
         })
-          .then(function (response) {
+          .then((response) => {
             console.log('it worked')
           })
-          .catch(function (requestErr) {
-            console.log('error')              
+          .catch((requestErr) => {
+            console.log('requestErr')              
           })  
       })
     }
