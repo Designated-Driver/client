@@ -5,6 +5,9 @@ export default {
   SET_DISPLAY_NAME: function (state, displayName) {
     state.auth.displayName = displayName
   },
+  SET_DISPLAY_PARTNER: function (state, displayPartner) {
+    state.auth.displayPartner = displayPartner
+  },
   SET_DISPLAY_EMAIL: function (state, email) {
     state.auth.email = email
   },

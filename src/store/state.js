@@ -2,6 +2,7 @@ export default {
   authState: false,
   auth: {
     displayName: null,
+    displayPartner: null,
     email: null,
     phoneNumber: null,
     accountType: null,

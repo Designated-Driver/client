@@ -12,7 +12,7 @@
             <input v-model="auth.password" type="password" placeholder="Password">
           </div>
           <div class="button">
-            <a @click="openAboutPage">        
+            <a @click="openAboutPage">
               <span>About This App</span>
             </a>
             <button type="submit">Sign Up</button>
@@ -39,17 +39,17 @@
             </span>
           </div>
           <div class="vue-form signup-form">
-            <input v-model="auth.fullName" type="text" placeholder="Full Name">              
+            <input v-model="auth.fullName" type="text" placeholder="Full Name">
             <input v-model="auth.email" type="text" placeholder="Email Address">
             <input v-model="auth.password" type="password" placeholder="Password">
-            <input v-model="auth.ID" type="text" placeholder="ID number"> 
+            <input v-model="auth.ID" type="text" placeholder="ID number">
             Car Information:
-            <input v-model="auth.carMake" type="text" placeholder="Car Make"> 
-            <input v-model="auth.carModel" type="text" placeholder="Car Model"> 
-            <input v-model="auth.carYear" type="text" placeholder="Car Year"> 
+            <input v-model="auth.carMake" type="text" placeholder="Car Make">
+            <input v-model="auth.carModel" type="text" placeholder="Car Model">
+            <input v-model="auth.carYear" type="text" placeholder="Car Year">
           </div>
           <div class="button">
-            <a @click="openAboutPage">     
+            <a @click="openAboutPage">
               <span>About This App</span>
             </a>
             <button type="submit">Sign Up</button>
@@ -141,7 +141,7 @@
           height: 40px;
           font-size: 100%;
           padding-left: 10px;
-        }      
+        }
       }
 
       .signup-form {

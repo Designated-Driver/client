@@ -22,6 +22,9 @@
             <div class="phone" v-if="getDisplayPhoneNumber">
               <span>{{getDisplayPhoneNumber}}</span>
             </div>
+            <div class="name">
+              <span>{{getDisplayPartner}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +39,7 @@
           <div class="Year">
             <span>{{getDisplayCarYear}}</span>
           </div>
-           
+
         </div>
       </div>
      <div class="content-update">
@@ -57,7 +60,9 @@
         'getDisplayPhoneNumber',
         'getDisplayCarMake',
         'getDisplayCarModel',
-        'getDisplayCarYear'
+        'getDisplayCarYear',
+        'getDisplayPartner',
+        'getDisplayID'
       ])
     }
   }
