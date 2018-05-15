@@ -26,8 +26,14 @@ export default {
   SET_DISPLAY_ID: function (state, ID) {
     state.auth.ID = ID
   },
-  MUTATE_SHOW_ABOUT_PAGE: function (state, val) {
-    state.showAboutPage = val
+  MUTATE_MESSAGE_TOKEN: function (state, messageToken) {
+    state.auth.messageToken = messageToken
+  },
+  MUTATE_LONGITUDE: function (state, currentLon) {
+    state.auth.currentLon = currentLon
+  },
+  MUTATE_LATITUDE: function (state, currentLat) {
+    state.auth.currentLat = currentLat
   },
   MUTATE_START_LOCATION: function (state, payload) {
     state.startLocation = payload

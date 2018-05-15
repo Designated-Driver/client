@@ -20,6 +20,15 @@ export default {
   getDisplayCarModel: function (state) {
     return state.auth.carModel
   },
+  getDisplayMessageToken: function (state) {
+    return state.auth.messageToken
+  },
+  getDisplayLongitude: function (state) {
+    return state.auth.currentLon
+  },
+  getDisplayLatitude: function (state) {
+    return state.auth.currentLat
+  },
   getDisplayCarYear: function (state) {
     return state.auth.carYear
   },

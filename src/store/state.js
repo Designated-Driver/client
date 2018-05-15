@@ -8,6 +8,9 @@ export default {
     carMake: null,
     carModel: null,
     carYear: null,
+    currentLon: null,
+    currentLat: null,
+    messageToken: null,
     ID: null
   },
   showAboutPage: false,
