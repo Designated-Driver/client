@@ -4,7 +4,10 @@
 
   <div class="trip-total" v-if="getTripCost">
     <p>Trip Total: ${{getTripCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</p>    
-  </div> 
+  </div>
+  <br></br> 
+  <p>Please enter the total trip cost: </p>
+  <input v-model="cost"/>
   <div :class="wrapperClass">
     <div id="dropin-container"></div>
     <button type="submit" style="padding-top: 1rem;" id="submitTransaction" @click="dropinRequestPaymentMethod">Test Payment</button>
@@ -64,7 +67,13 @@ export default {
       dropinInstance: '',
       dataCollectorPayload: '',
       authTokenTwo: '',
-      lastFour: ''
+      lastFour: '',
+      cost: '',
+      amount: {  
+        ...mapGetters([
+          'getTripCost'
+        ])
+      }
     }
   },
   methods: {
@@ -118,10 +127,11 @@ export default {
         }
 
         let uri = 'http://localhost:8081/checkout'
+        console.log('amount: ' + this.cost)
         axios({
           url: uri,
           method: 'post',
-          data: {'paymentPayload': payload.nonce}
+          data: {'paymentPayload': payload.nonce, 'amount': this.cost}
         })
           .then((response) => {
             this.lastFour = response.data
@@ -138,7 +148,7 @@ export default {
 
 <style>
 .card {
-  width: 95%;
+  width: 50%;
 }
 .card p {
 
