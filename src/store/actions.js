@@ -50,10 +50,13 @@ export default {
     })
   },
   logoutUser: function ({commit, dispatch, state}) {
-    return firebase.auth().signOut().then(response => {
-      commit('SET_AUTH_STATE', false)
-    }).catch(err => {
-      console.log(err)
+    firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
+      firebase.database().ref(`/users/offline/${firebase.auth().currentUser.uid}`).set(snapshot.val()).then(() => {
+        firebase.auth().signOut().then(response => {
+          commit('SET_AUTH_STATE', false)
+          firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).remove()
+        })
+      })
     })
   },
   showAboutPage: function ({commit, dispatch, state}, val) {

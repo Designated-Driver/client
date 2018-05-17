@@ -1,5 +1,6 @@
-importScripts('https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js')
-importScripts('https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js')
+import firebase from 'firebase'
+import firestore from 'firebase/firestore'
+
 var config = {
   apiKey: 'AIzaSyCNtTlfQ0rbHqcrKCCuOJL9l8AuzPXx_58',
   authDomain: 'designated-driv.firebaseapp.com',
@@ -9,5 +10,7 @@ var config = {
   messagingSenderId: '427262799693'
 }
 
-firebase.initializeApp(config)
-const messaging = firebase.messaging()
+const messaging = firebase.initializeApp(config)
+messaging.firestore().setting({ timestampsInSnapshots: true})
+
+export default messaging.firestore()
