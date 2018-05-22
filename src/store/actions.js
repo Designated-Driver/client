@@ -86,6 +86,23 @@ export default {
   updateStartLocation ({commit, dispatch, state}, payload) {
     commit('MUTATE_START_LOCATION', payload)
   },
+  riderRequestHelperFunction () {
+    console.log('purple thanos')
+    // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
+    firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
+      firebase.database().ref(`/users/online/currentlyIdle/`).orderByKey().once(`value`).then(function (snapshot) {
+        var riderkeep
+        snapshot.forEach(function (childSnapshot) {
+          riderkeep = childSnapshot.val() // for now, just grabs the last driver. might make it in way where it grabs random or closest driver
+          var b = childSnapshot.child(`email`).val()
+          console.log('fdsgdsgegew')
+          console.log(b)
+        })
+        console.log(riderkeep)
+        return riderkeep
+      })
+    })
+  },
   updateEndLocation ({commit, dispatch, state}, payload) {
     commit('MUTATE_END_LOCATION', payload)
   },

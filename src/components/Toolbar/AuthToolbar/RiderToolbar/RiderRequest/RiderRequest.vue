@@ -4,6 +4,7 @@
       <i class="fa fa-times"></i>
     </div>
     <div class="main-content">
+      {{getDisplayName2}}
       <div class="main-destination">
         <gmap-autocomplete @place_changed="setPlace" placeholder="Enter your destination"/>
       </div>
@@ -58,7 +59,9 @@
         'updateEndLocation',
         'generateRoute',
         'updateTripCost',
-        'updateCurrentlyOnTrip'
+        'updateCurrentlyOnTrip',
+        'testing123',
+        'riderRequestHelperFunction'
       ]),
       updatePaymentMethod: function () {
         console.log('open the page to update the payment methods')
@@ -68,6 +71,14 @@
         this.$emit('closeToolbar')
         this.updateTripCost(null)
         this.updateCurrentlyOnTrip(true)
+        console.log('requesting ride')
+        console.log('rider coming')
+        console.log('bf')
+        var a = this.riderRequestHelperFunction()
+        console.log('je')
+        console.log('a')
+        console.log(a)
+        console.log('tiger')
         // axios.get(`http://localhost:5000/designated-driv/us-central1/requestRide?startPosLat=${this.getStartLocation.lat}&startPosLng=${this.getStartLocation.lng}&endPosLat=${this.destination.lat}&endPosLng=${this.destination.lng}&numPeople=3&riderID=PkC76L7fxUbkqsVx94gE1S693tu1`, {
         //   headers: {
         //     'Access-Control-Allow-Origin': '*'
