@@ -1,10 +1,22 @@
 <template>
-  <div class="rider-buttons">
+  <div class="driver-buttons">
     <div class="tabs" @click="$emit('clickUser')">
       <span class="tabImg">
         <i class="fa fa-user fa-lg"></i>
       </span>
       <span class="tabName">Profile</span>
+    </div>
+    <div class="tabs" @click="$emit('clickAccept')">
+      <span class="tabImg">
+        <i class="fa fa-car fa-lg"></i>
+      </span>
+      <span class="tabName">Accept</span>
+    </div>
+    <div class="tabs" @click="$emit('clickMessaging')">
+      <span class="tabImg">
+        <i class="fa fa-envelope fa-lg"></i>
+      </span>
+      <span class="tabName">Messages</span>
     </div>
     <div class="tabs" @click="$emit('clickSettings')">
       <span class="tabImg">
@@ -22,7 +34,7 @@
 </script>
 
 <style lang="scss" scoped>
-.rider-buttons {
+.driver-buttons {
   width: 100%;
   height: 10vh;
   display: flex;

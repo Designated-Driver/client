@@ -1,5 +1,5 @@
 <template>
-  <div class="rider-settings">
+  <div class="driver-settings">
     <div class="close-toolbar" @click="$emit('closeToolbar')">
       <i class="fa fa-times"></i>
     </div>
@@ -56,7 +56,7 @@
       </div>
       <div class="ride-history">
         <i class="fa fa-history"></i>
-        <span>Rider History</span>
+        <span>driver History</span>
       </div>
       <div class="about" @click="this.showAboutPage">
         <i class="fa fa-info"></i>
@@ -110,7 +110,7 @@
 </script>
 
 <style lang="scss" scoped>
-.rider-settings {
+.driver-settings {
   height: 100%;
   width: 100%;
   display: flex;

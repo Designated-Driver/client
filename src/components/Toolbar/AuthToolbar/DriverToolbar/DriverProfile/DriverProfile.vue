@@ -1,5 +1,5 @@
 <template>
-  <div class="rider-user">
+  <div class="driver-user">
     <div class="close-toolbar" @click="$emit('closeToolbar')">
       <i class="fa fa-times"></i>
     </div>
@@ -49,7 +49,7 @@
 <script>
   import { mapGetters } from 'vuex'
   export default {
-    name: 'RiderUser',
+    name: 'DriverUser',
     computed: {
       ...mapGetters([
         'getDisplayName',
@@ -64,7 +64,7 @@
 </script>
 
 <style lang="scss" scoped>
-.rider-user {
+.driver-user {
   height: 100%;
   width: 100%;
   display: flex;

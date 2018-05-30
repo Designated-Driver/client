@@ -32,18 +32,21 @@ export default {
   loginUser: function ({commit, dispatch, state}, payload) {
     return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
       // Should move the user from offline to riders or drivers currentlyIdle -> set the current account type in state
-      firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
-        commit('SET_DISPLAY_ACCOUNT', snapshot.val().accountType)
-        commit('SET_DISPLAY_CAR_MAKE', snapshot.val().carMake)
-        commit('SET_DISPLAY_CAR_MODEL', snapshot.val().carModel)
-        commit('SET_DISPLAY_CAR_YEAR', snapshot.val().carYear)
-        commit('SET_DISPLAY_ID', snapshot.val().ID)
-      })
-      commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
-      commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
-      commit('SET_AUTH_STATE', true)
-      messaging.getToken().then(token => {
-        console.log(`The token is ${token}`)
+      firebase.database().ref(`/users/offline/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
+        firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).set(snapshot.val()).then(() => {
+          firebase.database().ref(`/users/offline/${firebase.auth().currentUser.uid}`).remove()
+          commit('SET_DISPLAY_ACCOUNT', snapshot.val().accountType)
+          commit('SET_DISPLAY_CAR_MAKE', snapshot.val().carMake)
+          commit('SET_DISPLAY_CAR_MODEL', snapshot.val().carModel)
+          commit('SET_DISPLAY_CAR_YEAR', snapshot.val().carYear)
+          commit('SET_DISPLAY_ID', snapshot.val().ID)
+        })
+        commit('SET_DISPLAY_NAME', firebase.auth().currentUser.displayName)
+        commit('SET_DISPLAY_EMAIL', firebase.auth().currentUser.email)
+        commit('SET_AUTH_STATE', true)
+        messaging.getToken().then(token => {
+          console.log(`The token is ${token}`)
+        })
       })
     }).catch(err => {
       console.log(err)
@@ -52,9 +55,9 @@ export default {
   logoutUser: function ({commit, dispatch, state}) {
     firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
       firebase.database().ref(`/users/offline/${firebase.auth().currentUser.uid}`).set(snapshot.val()).then(() => {
+        firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).remove()
         firebase.auth().signOut().then(response => {
           commit('SET_AUTH_STATE', false)
-          firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).remove()
         })
       })
     })

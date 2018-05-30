@@ -26,6 +26,9 @@ export default {
   SET_DISPLAY_ID: function (state, ID) {
     state.auth.ID = ID
   },
+  SET_DISPLAY_Link: function (state, chatLink) {
+    state.auth.chatLink = chatLink
+  },
   MUTATE_SHOW_ABOUT_PAGE: function (state, val) {
     state.showAboutPage = val
   },

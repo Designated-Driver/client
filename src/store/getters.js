@@ -26,6 +26,9 @@ export default {
   getDisplayID: function (state) {
     return state.auth.ID
   },
+  getDisplayLink: function (state) {
+    return state.auth.chatLink
+  },
   getShowAboutPage: function (state) {
     return state.showAboutPage
   },

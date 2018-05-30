@@ -8,7 +8,8 @@ export default {
     carMake: null,
     carModel: null,
     carYear: null,
-    ID: null
+    ID: null,
+    chatLink: null
   },
   showAboutPage: false,
   startLocation: {lat: 36.968965, lng: -122.025568},
