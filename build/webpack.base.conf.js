@@ -10,6 +10,11 @@ function resolve (dir) {
 }
 
 module.exports = {
+  node: {
+    fs: "empty",
+    net: "empty",
+    tls: "empty"
+  },
   entry: {
     app: './src/main.js'
   },
@@ -28,6 +33,9 @@ module.exports = {
     }
   },
   module: {
+    noParse: function (content){
+      return /express/.test(content)
+    },
     rules: [
       {
         test: /\.(js|vue)$/,

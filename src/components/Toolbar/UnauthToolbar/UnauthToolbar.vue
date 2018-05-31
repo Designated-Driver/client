@@ -85,6 +85,7 @@
             this.auth.email = ''
             this.auth.password = ''
             this.auth.fullName = ''
+            this.$router.push('/addCard')
           }).catch(err => {
             console.log(err)
           })

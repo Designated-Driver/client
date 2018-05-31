@@ -21,11 +21,7 @@
         </div>  
         <div class="container" :class="{'top-borders': !getTripCost}">      
           <div class="card-info">
-            <div class="card-image">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1280px-Visa.svg.png" alt="card">          
-            </div>
-            <span>**** 4832 - Debit</span>
-            <span @click="updatePaymentMethod"><i class="fa fa-pencil"></i></span>          
+            <div @click="addCard">Add Payments</div>          
           </div>
         </div>
       </div>
@@ -63,6 +59,7 @@
       updatePaymentMethod: function () {
         console.log('open the page to update the payment methods')
       },
+
       requestRide: function () {
         this.generateRoute(true)
         this.$emit('closeToolbar')
@@ -79,6 +76,11 @@
         //   console.log(err)
         // })
       },
+      addCard: function () {
+        console.log('going to card page')
+        this.$router.push('/card')
+      },
+
       setPlace: function (place) {
         if (place.place_id) {
           this.destination = {'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng()}
@@ -199,6 +201,8 @@
 
       .card-info {
         height: 66%;
+        background: white;
+        color: black;        
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -211,12 +215,6 @@
             max-height: 20px;
             max-width: 35px;
           }
-        }
-
-        span {
-          flex-grow: 1;
-          font-family: Quantico;
-          padding-left: 10px;
         }
       }
 
