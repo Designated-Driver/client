@@ -1,3 +1,7 @@
+import Vue from 'vue';
+import Gravatar from 'vue-gravatar';
+
+Vue.component('v-gravatar', Gravatar);
 <template>
   <div class="rider-settings">
     <div class="close-toolbar" @click="$emit('closeToolbar')">
@@ -11,7 +15,7 @@
       </div>
       <div class="profile">
         <div class="image">
-          <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
+          <v-gravatar email="kachinna@ucsc.edu" />
         </div>
         <div class="text">
           <div class="name">

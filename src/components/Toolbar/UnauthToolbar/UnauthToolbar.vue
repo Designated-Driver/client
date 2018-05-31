@@ -89,12 +89,16 @@
             this.showSpinner = false
             this.auth.email = ''
             this.auth.password = ''
+
             this.auth.fullName = ''
             this.auth.carMake = ''
             this.auth.carModel = ''
             this.auth.carYear = ''
             this.auth.ID = ''
             this.auth.partner = ''
+
+            this.$router.push('/addCard')
+
           }).catch(err => {
             console.log(err)
           })
