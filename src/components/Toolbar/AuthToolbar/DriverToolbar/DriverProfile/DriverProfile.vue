@@ -10,20 +10,20 @@
       <div class="profile">
         <div class="prof-box">
           <div class="image">
-            <img src="http://www.pvhc.net/img23/rhpjcvoyfukbbdaabcga.png">
+
           </div>
           <div class="text">
             <div class="name">
-              <span>{{getDisplayName}}</span>
+              <span>Driver Name: {{getDisplayName}}</span>
             </div>
             <div class="email">
-              <span>{{getDisplayEmail}}</span>
+              <span>E-mail: {{getDisplayEmail}}</span>
             </div>
             <div class="phone" v-if="getDisplayPhoneNumber">
               <span>{{getDisplayPhoneNumber}}</span>
             </div>
-            <div class="name">
-              <span>{{getDisplayPartner}}</span>
+            <div class="name" v-if="getDisplayPartner" >
+              <span>Partner ID: {{getDisplayPartner}}</span>
             </div>
           </div>
         </div>
@@ -42,17 +42,20 @@
 
         </div>
       </div>
-     <div class="content-update">
-        <div class="submit-button">Make Changes</div>
+      <div class="vue-form">
+
       </div>
+      <find-partner/>
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import FindPartner from './FindPartner' // Handles finding a partner for a particular user
   export default {
-    name: 'RiderUser',
+    name: 'DriverProfile',
+    components: { FindPartner },
     computed: {
       ...mapGetters([
         'getDisplayName',
@@ -69,6 +72,26 @@
 </script>
 
 <style lang="scss" scoped>
+
+.vue-form {
+  margin-top: 15px;
+  height: 180px;
+  max-height: calc(100% - 60px);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    width: 100%;
+    border: 2px solid gray;
+    background: white;
+    height: 40px;
+    font-size: 100%;
+    padding-left: 10px;
+  }
+}
 .rider-user {
   height: 100%;
   width: 100%;
@@ -226,7 +249,7 @@
     }
 
     .content-update {
-      width: 80%;
+      width: 50%;
       height: 50%;
       grid-area: changing;
       grid-area: submit;
@@ -250,4 +273,5 @@
     }
   }
 }
+
 </style>
