@@ -13,6 +13,23 @@
     "test": {
       "presets": ["env", "stage-2"],
       "plugins": [ "istanbul" ]
-    }
+    },
+    "BT_ENVIRONMENT": {
+      "description": "Run against Braintree sandbox environment",
+      "required": true,
+      "value": "sandbox"
+    },
+    "BT_MERCHANT_ID": {
+      "description": "Your Braintree Merchant ID",
+      "required": true
+    },
+    "BT_PUBLIC_KEY": {
+      "description": "Your Braintree Public Key",
+      "required": true
+    },
+    "BT_PRIVATE_KEY": {
+      "description": "Your Braintree Private Key",
+      "required": true
+    }    
   }
 }

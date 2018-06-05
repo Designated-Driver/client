@@ -5,6 +5,9 @@ export default {
   getDisplayName: function (state) {
     return state.auth.displayName
   },
+  getDisplayPartner: function (state) {
+    return state.auth.displayPartner
+  },
   getDisplayEmail: function (state) {
     return state.auth.email
   },
