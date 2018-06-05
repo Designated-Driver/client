@@ -1,5 +1,5 @@
 <template>
-  <div class="rider-settings">
+  <div class="driver-settings">
     <div class="close-toolbar" @click="$emit('closeToolbar')">
       <i class="fa fa-times"></i>
     </div>
@@ -56,7 +56,7 @@
       </div>
       <div class="ride-history">
         <i class="fa fa-history"></i>
-        <span>Rider History</span>
+        <span>driver History</span>
       </div>
       <div class="about" @click="this.showAboutPage">
         <i class="fa fa-info"></i>
@@ -110,14 +110,13 @@
 </script>
 
 <style lang="scss" scoped>
-.rider-settings {
+.driver-settings {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center; 
 }
-
 .main-content {
   height: calc(100% - 20px);
   width: calc(100% - 20px);
@@ -133,7 +132,6 @@
                         "documents"
                         "sign-out";
   grid-template-rows: 120px 100px 60px 60px 60px 60px 60px 1fr;
-
   .settings {
     grid-area: settings;
     display: flex;
@@ -144,7 +142,6 @@
     margin-bottom: 60px;
     margin-top: 20px;
   }
-
   .profile {
     display: flex;
     flex-direction: row;
@@ -156,7 +153,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
       img {
       background: white;
         max-height: 80%;
@@ -164,11 +160,9 @@
         border-radius: 50%;
       }
     }
-
     .text {
       height: 100%;
       flex-grow: 1;
-
       .name, .email, .phone {
         height: 33%;
         display: flex;
@@ -179,7 +173,6 @@
       }
     }
   }
-
   .card-info {
     
     grid-area: payments;
@@ -187,7 +180,6 @@
     display: flex;
     justify-content: left;
     align-items: center;
-
     i {
       width: 60px;
       height: 100%;
@@ -196,18 +188,16 @@
       align-items: center;
     }
   }
-
   .vehicle-information {
     grid-area: vehicle;
     width: 100%;
     height: 100%;
     align-items: flex-start;
-
     .car-title{
       width: 100%;
       display: flex;
       justify-content: left;
-      align-item: center;
+      align-items: center;
       i {
         width: 60px;
         height: 100%;
@@ -242,7 +232,6 @@
         align-items: center;
         justify-content: center;
       }
-
       .car-model {
         grid-area: car-model;
         width: 100%;
@@ -251,7 +240,6 @@
         align-items: center;
         justify-content: center;
       }
-
       .car-year {
         grid-area: car-year;
         width: 100%;
@@ -262,14 +250,12 @@
       }
     }
   }
-
   .ride-history {
     grid-area: ride-history;
     height: 60px;    
     display: flex;
     justify-content: left;
     align-items: center;
-
     i {
       width: 60px;
       height: 100%;  
@@ -278,14 +264,12 @@
       align-items: center;    
     }
   }
-
   .about {
     grid-area: about;
     height: 60px;    
     display: flex;
     justify-content: left;
     align-items: center;
-
     i {
       width: 60px;
       height: 100%;
@@ -294,14 +278,12 @@
       align-items: center;
     }
   }
-
   .permissions {
     grid-area: permissions;
     height: 60px;    
     display: flex;
     justify-content: left;
     align-items: center;
-
     i {
       width: 60px;
       height: 100%;
@@ -310,13 +292,11 @@
       align-items: center;
     }
   }
-
   .sign-out {
     grid-area: sign-out;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     .logout {
       width: 90%;
       background: white;
@@ -329,7 +309,6 @@
       align-items: center;
     }
   }
-
   a {
     color: white;
   }

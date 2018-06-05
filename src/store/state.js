@@ -11,8 +11,10 @@ export default {
     currentLon: null,
     currentLat: null,
     messageToken: null,
-    ID: null
+    ID: null,
+    chatLink: null
   },
+  riderName: 'Fred',
   showAboutPage: false,
   startLocation: {lat: 36.968965, lng: -122.025568},
   endLocation: null,

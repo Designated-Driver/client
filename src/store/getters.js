@@ -20,6 +20,9 @@ export default {
   getDisplayCarModel: function (state) {
     return state.auth.carModel
   },
+  getDisplayLink: function (state) {
+    return state.auth.chatLink
+  },
   getDisplayMessageToken: function (state) {
     return state.auth.messageToken
   },
@@ -40,6 +43,9 @@ export default {
   },
   getStartLocation: function (state) {
     return state.startLocation
+  },
+  getRiderName: function (state) {
+    return state.riderName
   },
   getEndLocation: function (state) {
     return state.endLocation

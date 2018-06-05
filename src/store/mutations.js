@@ -26,8 +26,14 @@ export default {
   SET_DISPLAY_ID: function (state, ID) {
     state.auth.ID = ID
   },
+  SET_DISCORD_LINK: function (state, chatLink) {
+    state.auth.chatLink = chatLink
+  },
   MUTATE_MESSAGE_TOKEN: function (state, messageToken) {
     state.auth.messageToken = messageToken
+  },
+  MUTATE_RIDER_NAME: function (state, riderName) {
+    state.riderName = riderName
   },
   MUTATE_LONGITUDE: function (state, currentLon) {
     state.auth.currentLon = currentLon

@@ -71,11 +71,40 @@ export default {
       console.log(err)
     })
   },
-  logoutUser: function ({commit, dispatch, state}) {
+  logoutUser: function ({commit, dispatch, state}, payload) {
     return firebase.auth().signOut().then(response => {
       commit('SET_AUTH_STATE', false)
     }).catch(err => {
       console.log(err)
+    })
+  },
+  createRequest: function ({commit, dispatch, state}, payload) {
+    firebase.database().ref(`/users/online/currentlyIdle/${firebase.auth().currentUser.uid}`).once('value').then(snapshot => {
+      firebase.database().ref('/rides').push({
+        'riderLocation': payload.riderLocation,
+        'dropOffLocation': payload.dropOffLocation,
+        'messageToken': snapshot.val().messageToken,
+        'name': snapshot.val().fullName
+      })
+      console.log('createRequest called')
+    })
+  },
+  setRouteToRider: function ({commit, dispatch, state}) {
+    firebase.database().ref('rides').once('value').then(snapshot => {
+      var newArray = Object.values(snapshot.val())
+      newArray.forEach(element => {
+        commit('MUTATE_END_LOCATION', element.dropOffLocation)
+      })
+    })
+  },
+  setRouteToDestination: function ({commit, dispatch, state}) {
+    firebase.database().ref('rides').once('value').then(snapshot => {
+      var newArray = Object.values(snapshot.val())
+      newArray.forEach(element => {
+        commit('MUTATE_START_LOCATION', element.riderLocation)
+        commit('MUTATE_END_LOCATION', element.dropOffLocation)
+      })
+      firebase.database().ref(`/rides`).remove()
     })
   },
   showAboutPage: function ({commit, dispatch, state}, val) {
@@ -89,6 +118,9 @@ export default {
             console.log(token)
           })
       })
+  },
+  updateRiderName ({commit, dispatch, state}, val) {
+    commit('MUTATE_RIDER_NAME', val)
   },
   updateDatabasePosition ({commit, dispatch, state}, lat, lon) {
     commit('MUTATE_LATITUDE', lat)

@@ -1,5 +1,5 @@
 <template>
-  <div class="rider-user">
+  <div class="driver-user">
     <div class="close-toolbar" @click="$emit('closeToolbar')">
       <i class="fa fa-times"></i>
     </div>
@@ -49,7 +49,7 @@
 <script>
   import { mapGetters } from 'vuex'
   export default {
-    name: 'RiderUser',
+    name: 'DriverUser',
     computed: {
       ...mapGetters([
         'getDisplayName',
@@ -64,13 +64,12 @@
 </script>
 
 <style lang="scss" scoped>
-.rider-user {
+.driver-user {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
   .main-content {
     height: calc(100% - 20px);
     width: calc(100% - 20px);
@@ -85,7 +84,6 @@
       "changing";
     grid-template-rows: 5%, 30%, 30%, 20%;
     grid-row-gap: 5px;
-
     .content-header {
       //header
       width: 85%;
@@ -96,7 +94,6 @@
       align-items: center;
       color: white;
     }
-
     .profile {
       width: 100%;
       height: 100%;
@@ -106,7 +103,6 @@
       align-items: center;
       flex-direction: row;
       grid-area: profile_pg;
-
       .prof-box {
         width: 80%;
         height: 85%;
@@ -121,7 +117,6 @@
         background: white;
         color: black;
         border-radius: 5px;
-
         .image {
           grid-area: photo;
           height: 100%;
@@ -129,7 +124,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-
           img {
             background: white;
             // border: 1px solid gray;
@@ -138,21 +132,18 @@
             border-radius: 50%;
           }
         }
-
         .name {
           grid-area: username;
           height: 33%;
           display: flex;
           align-items: center;
         }
-
         .email {
           grid-area: email;
           height: 33%;
           display: flex;
           align-items: center;
         }
-
         .phone {
           grid-area: number;
           height: 33%;
@@ -161,7 +152,6 @@
         }
       }
     }
-
     .content-vehicle {
       width: 100%;
       height: 100%;
@@ -169,7 +159,6 @@
       justify-content: center;
       align-items: center;
       display: flex;
-
       .veh-box {
         height: 65%;
         width: 80%;
@@ -181,7 +170,6 @@
         border-radius: 5px;
         grid-template-areas: "car-type" "car-model" "car-year";
         grid-template-columns: 1fr, 1fr, 1fr;
-
         .Brand {
           width: 100%;
           height: 100%;
@@ -190,7 +178,6 @@
           align-items: center;
           justify-content: center;
         }
-
         .Model {
           grid-area: car-model;
           width: 100%;
@@ -199,7 +186,6 @@
           align-items: center;
           justify-content: center;
         }
-
         .Year {
           grid-area: car-year;
           width: 100%;
@@ -208,7 +194,6 @@
           align-items: center;
           justify-content: center;
         }
-
         .Seats {
           grid-area: car-seats;
           width: 100%;
@@ -219,7 +204,6 @@
         }
       }
     }
-
     .content-update {
       width: 80%;
       height: 50%;
@@ -231,7 +215,6 @@
       background: white;
       color: black;
       border-radius: 5px;
-
       .submit-button {
         width: 80%;
         height: 80%;
