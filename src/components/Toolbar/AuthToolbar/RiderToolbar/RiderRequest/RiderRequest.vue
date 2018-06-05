@@ -34,12 +34,14 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  // import axios from 'axios'
+  import axios from 'axios'
   export default {
     name: 'RiderRequest',
     computed: {
       ...mapGetters([
         'getStartLocation',
+        'getEndLocation',
+        'getDisplayMessageToken',
         'getTripCost'
       ])
     },
@@ -54,6 +56,7 @@
         'updateEndLocation',
         'generateRoute',
         'updateTripCost',
+        'createRequest',
         'updateCurrentlyOnTrip'
       ]),
       updatePaymentMethod: function () {
@@ -65,16 +68,17 @@
         this.$emit('closeToolbar')
         this.updateTripCost(null)
         this.updateCurrentlyOnTrip(true)
-        // axios.get(`http://localhost:5000/designated-driv/us-central1/requestRide?startPosLat=${this.getStartLocation.lat}&startPosLng=${this.getStartLocation.lng}&endPosLat=${this.destination.lat}&endPosLng=${this.destination.lng}&numPeople=3&riderID=PkC76L7fxUbkqsVx94gE1S693tu1`, {
-        //   headers: {
-        //     'Access-Control-Allow-Origin': '*'
-        //   }
-        // }).then(response => {
-        //   console.log(response)
-        //   this.$emit('closeToolbar')
-        // }).catch(err => {
-        //   console.log(err)
-        // })
+        this.createRequest({'riderLocation': this.getStartLocation, 'dropOffLocation': this.getEndLocation})
+        axios.get(`http://localhost:8081/requestDrivers`, {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        }).then(response => {
+          console.log(response)
+          this.$emit('closeToolbar')
+        }).catch(err => {
+          console.log(err)
+        })
       },
       addCard: function () {
         console.log('going to card page')
@@ -85,6 +89,7 @@
         if (place.place_id) {
           this.destination = {'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng()}
           this.updateEndLocation(this.destination)
+          console.log('this place works')
         } else {
           console.log('this place doesnt work')
         }

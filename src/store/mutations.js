@@ -5,14 +5,44 @@ export default {
   SET_DISPLAY_NAME: function (state, displayName) {
     state.auth.displayName = displayName
   },
+  SET_DISPLAY_PARTNER: function (state, displayPartner) {
+    state.auth.displayPartner = displayPartner
+  },
   SET_DISPLAY_EMAIL: function (state, email) {
     state.auth.email = email
+  },
+  SET_DISPLAY_ACCOUNT: function (state, accountType) {
+    state.auth.accountType = accountType
   },
   SET_DISPLAY_PHONE_NUMBER: function (state, phoneNumber) {
     state.auth.phoneNumber = phoneNumber
   },
-  MUTATE_SHOW_ABOUT_PAGE: function (state, val) {
-    state.showAboutPage = val
+  SET_DISPLAY_CAR_MAKE: function (state, carMake) {
+    state.auth.carMake = carMake
+  },
+  SET_DISPLAY_CAR_MODEL: function (state, carModel) {
+    state.auth.carModel = carModel
+  },
+  SET_DISPLAY_CAR_YEAR: function (state, carYear) {
+    state.auth.carYear = carYear
+  },
+  SET_DISPLAY_ID: function (state, ID) {
+    state.auth.ID = ID
+  },
+  SET_DISCORD_LINK: function (state, chatLink) {
+    state.auth.chatLink = chatLink
+  },
+  MUTATE_MESSAGE_TOKEN: function (state, messageToken) {
+    state.auth.messageToken = messageToken
+  },
+  MUTATE_RIDER_NAME: function (state, riderName) {
+    state.riderName = riderName
+  },
+  MUTATE_LONGITUDE: function (state, currentLon) {
+    state.auth.currentLon = currentLon
+  },
+  MUTATE_LATITUDE: function (state, currentLat) {
+    state.auth.currentLat = currentLat
   },
   MUTATE_START_LOCATION: function (state, payload) {
     state.startLocation = payload

@@ -20,7 +20,7 @@ navigator.serviceWorker.register('./static/firebase-messaging-sw.js')
   })
 
 messaging.onMessage(payload => {
-  console.log('using on message')
+  console.log('created message')
   console.log(payload)
 })
 

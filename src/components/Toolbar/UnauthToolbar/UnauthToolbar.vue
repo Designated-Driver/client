@@ -1,14 +1,14 @@
 <template>
   <div class="unauth-toolbar" :style="{'height': (toolbar.showLogIn || toolbar.showSignUp) ? '350px' : '10vh' }">
-    <auth-buttons 
+    <auth-buttons
       v-if="(!toolbar.showLogIn && !toolbar.showSignUp)"
       @clickLogin="clickLogin"
       @clickSignup="clickSignUp"
     />
-    
-    <auth-flow 
+
+    <auth-flow
       v-else
-      :toolbar="toolbar" 
+      :toolbar="toolbar"
       :auth="auth"
       :showSpinner="showSpinner"
       @submitLogin="submitLogin"
@@ -35,6 +35,11 @@
           email: '',
           password: '',
           fullName: '',
+          carMake: '',
+          carModel: '',
+          carYear: '',
+          ID: '',
+          partner: '',
           accountType: 'rider'
         },
         showSpinner: false
@@ -73,18 +78,23 @@
         }
       },
       submitSignUp () {
-        if (!this.auth.email || !this.auth.password || !this.auth.fullName) {
+        if (!this.auth.ID || !this.auth.email || !this.auth.password || !this.auth.fullName || !this.auth.carMake || !this.auth.carModel || !this.auth.carYear) {
           console.log('one of these fields are incomplete')
         } else if (!this.auth.email.includes('@')) {
           console.log('this auth.email doesnt contain @')
         } else {
           this.showSpinner = true
-          this.authenticateUser({'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'accountType': this.auth.accountType}).then(() => {
+          this.authenticateUser({'ID': this.auth.ID, 'carMake': this.auth.carMake, 'carModel': this.auth.carModel, 'carYear': this.auth.carYear, 'email': this.auth.email, 'password': this.auth.password, 'fullName': this.auth.fullName, 'accountType': this.auth.accountType, 'partner': this.auth.partner}).then(() => {
             this.toolbar.showSignUp = false
             this.showSpinner = false
             this.auth.email = ''
             this.auth.password = ''
             this.auth.fullName = ''
+            this.auth.carMake = ''
+            this.auth.carModel = ''
+            this.auth.carYear = ''
+            this.auth.ID = ''
+            this.auth.partner = ''
             this.$router.push('/addCard')
           }).catch(err => {
             console.log(err)

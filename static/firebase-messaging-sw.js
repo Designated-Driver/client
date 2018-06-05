@@ -8,6 +8,6 @@ var config = {
   storageBucket: 'designated-driv.appspot.com',
   messagingSenderId: '427262799693'
 }
-
+//allows messaging and using service worker
 firebase.initializeApp(config)
 const messaging = firebase.messaging()
