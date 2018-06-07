@@ -59,6 +59,9 @@ export default {
   getGenerateRoute: function (state) {
     return state.generateRoute
   },
+  getClearRoute: function (state) {
+    return state.clearedRoute
+  },
   getCurrentlyOnTrip: function (state) {
     return state.currentlyOnTrip
   }

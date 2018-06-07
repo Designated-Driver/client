@@ -10,7 +10,13 @@
       <span class="tabImg">
         <i class="fa fa-car fa-lg"></i>
       </span>
-      <span class="tabName">Request a Ride</span>
+      <span class="tabName">Request Ride</span>
+    </div>
+    <div class="tabs" @click="$emit('clickVerifyEoR')">
+      <span class="tabImg">
+        <i class="fa fa-check fa-lg"></i>
+      </span>
+      <span class="tabName">Verify Arrival</span>
     </div>
     <div class="tabs" @click="$emit('clickSettings')">
       <span class="tabImg">

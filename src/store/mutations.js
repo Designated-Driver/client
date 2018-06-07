@@ -56,6 +56,9 @@ export default {
   MUTATE_GENERATE_ROUTE: function (state, val) {
     state.generateRoute = val
   },
+  MUTATE_CLEAR_ROUTE: function (state, val) {
+    state.clearedRoute = val
+  },
   MUTATE_CURRENLY_ON_TRIP: function (state, val) {
     state.currentlyOnTrip = val
   }

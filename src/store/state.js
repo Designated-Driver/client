@@ -21,5 +21,6 @@ export default {
   endLocation: null,
   tripCost: null,
   generateRoute: false,
+  clearedRoute: false,
   currentlyOnTrip: false
 }

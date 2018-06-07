@@ -2,11 +2,13 @@
   <div class="rider-toolbar" 
   :class="{'user-height': toolbar.showUser,
             'request-height': toolbar.showRequestRide, 
+            'verify-height': toolbar.showVerifyEoR, 
             'settings-height': toolbar.showSettings,
             'toolbar-height': toolbar.showToolbar}">
     <rider-buttons 
       @clickUser="clickUser"
       @clickRequestRide="clickRequestRide"
+      @clickVerifyEoR="clickVerifyEoR"
       @clickSettings="clickSettings"
       v-if="toolbar.showToolbar"
     />
@@ -14,6 +16,9 @@
      @closeToolbar="closeToolbar"
      v-else-if="toolbar.showUser" />
     <rider-request 
+     @closeToolbar="closeToolbar"
+     v-else-if="toolbar.showRequestRide" />
+    <rider-verify 
      @closeToolbar="closeToolbar"
      v-else-if="toolbar.showRequestRide" />
     <rider-settings 
@@ -27,9 +32,15 @@
   import RiderUser from './RiderUser/RiderUser'
   import RiderRequest from './RiderRequest/RiderRequest'
   import RiderSettings from './RiderSettings/RiderSettings'
+  import { mapActions, mapGetters } from 'vuex'
   export default {
     name: 'RiderToolbar',
     components: { RiderButtons, RiderUser, RiderRequest, RiderSettings },
+    computed: {
+      ...mapGetters([
+        'getClearRoute'
+      ])
+    },
     data () {
       return {
         toolbar: {
@@ -41,6 +52,9 @@
       }
     },
     methods: {
+      ...mapActions([
+        'clearRoute'
+      ]),
       clickUser: function () {
         this.toolbar.showToolbar = false
         this.toolbar.showUser = true
@@ -48,6 +62,9 @@
       clickRequestRide: function () {
         this.toolbar.showToolbar = false
         this.toolbar.showRequestRide = true
+      },
+      clickVerifyEoR: function () {
+        this.clearRoute(true)
       },
       clickSettings: function () {
         this.toolbar.showToolbar = false
@@ -71,6 +88,10 @@
 
 .request-height {
   height: 275px;
+}
+
+.verify-height {
+  height: 100vh;
 }
 
 .settings-height {

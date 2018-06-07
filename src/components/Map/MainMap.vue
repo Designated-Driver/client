@@ -242,6 +242,7 @@
       ...mapGetters([
         'getStartLocation',
         'getEndLocation',
+        'getClearRoute',
         'getGenerateRoute',
         'getCurrentlyOnTrip'
       ])
@@ -252,6 +253,7 @@
           var directionsService = new window.google.maps.DirectionsService()
           var directionsDisplay = new window.google.maps.DirectionsRenderer()
           directionsDisplay.setMap(this.$refs.map.$mapObject)
+
           var request = {
             destination: after,
             origin: this.mapData.currentPosition,
@@ -275,7 +277,7 @@
             var directionsService = new window.google.maps.DirectionsService()
             var directionsDisplay = new window.google.maps.DirectionsRenderer()
             directionsDisplay.setMap(this.$refs.map.$mapObject)
-
+            
             var destination = this.getEndLocation
             var origin = this.mapData.currentPosition
 
@@ -294,6 +296,8 @@
               }
             }.bind(this))
             this.generateRoute(false)
+          } else {
+            
           }
         }
       }

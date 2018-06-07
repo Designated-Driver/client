@@ -171,6 +171,9 @@ export default {
   generateRoute ({commit, dispatch, state}, val) {
     commit('MUTATE_GENERATE_ROUTE', val)
   },
+  clearRoute ({commit, dispatch, state}, val) {
+    commit('MUTATE_CLEAR_ROUTE', val)
+  },
   updateCurrentlyOnTrip ({commit, dispatch, state}, val) {
     commit('MUTATE_CURRENLY_ON_TRIP', val)
   }
