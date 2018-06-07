@@ -15,8 +15,9 @@
           <span>Accept the ride?</span>
         </div>
       </div>
-      <div class="main-accept">
+      <div class="main-buttons">
         <div @click="acceptRide" class="accept-button">Accept</div>
+        <div @click="clearRide" class="clear-button">Done</div>
       </div>
     </div>
   </div>  
@@ -39,11 +40,12 @@
         'setRouteToDestination',
         'retrieveRequest',
         'generateRoute',
+        'clearRoute',
         'updateTripCost',
         'updateCurrentlyOnTrip'
       ]),
       acceptRide: function () {
-        this.setRouteToDestination()
+        this.setRouteToRider()
         this.generateRoute(true)
         this.updateTripCost(null)
         this.updateCurrentlyOnTrip(true)
@@ -57,6 +59,10 @@
         }).catch(err => {
           console.log(err)
         })
+        this.setRouteToDestination()
+      },
+      clearRide: function () {
+        this.clearRoute()
       }
     }
   }
@@ -71,7 +77,7 @@
     align-items: center;
   }
   .main-content {
-    width: 100%;
+    width: 85%;
     height: 100%;
     grid-template-areas:
     "info" "abutton";
@@ -81,49 +87,71 @@
     flex-direction: row;
 
     .main-ride-info {
-      width: 80%;
-      height: 85%;
+      width: 50%;
+      height: 50%;
       display: flex;
       grid-area: info;
       grid-template-areas:
       "nameSpace"
       "time"
       "question";
-      grid-template-rows: 1fr, 1fr, 1fr; 
+      flex-direction: column;
 
       .rider-name {
-        width: 80%;
-        height: 85%;
+        width: 100%;
+        height: 30%;
+        display: flex;
+        align-items: center;
         grid-area: nameSpace;
       }
 
       .rider-location {
-        width: 80%;
-        height: 85%;
+        width: 100%;
+        height: 30%;
+        display: flex;
+        align-items: center;
         grid-area: time;
       }
 
       .question {
-        width: 80%;
-        height: 85%;
+        width: 100%;
+        height: 30%;
+        display: flex;
+        align-items: center;
         grid-area: question;
       }
     }
 
-    .main-accept {
+    .main-buttons {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 80px;
       grid-area: abutton;
+      grid-template-areas:
+      "acceptb"
+      "clearb";
+      flex-direction: column;
 
       .accept-button {
-        width: 80%;
+        width: 150px;
         height: 80%;
         background:green;
         color: white;
         border-radius: 5px;
         display: flex;
+        grid-area: acceptb;
+        justify-content: center;
+        align-items: center;
+      }
+      .clear-button {
+        width: 150px;
+        height: 80%;
+        background:green;
+        color: white;
+        border-radius: 5px;
+        display: flex;
+        grid-area: clearb;
         justify-content: center;
         align-items: center;
       }
