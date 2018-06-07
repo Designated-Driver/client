@@ -12,18 +12,10 @@
   export default {
     name: 'AuthToolbar',
     components: { RiderToolbar, DriverToolbar },
-<<<<<<< HEAD
-    data () {
-      return {
-        showDriverToolbar: true,
-        showRiderToolbar: false
-      }
-=======
     computed: {
       ...mapGetters([
         'getDisplayAccountType'
       ])
->>>>>>> Test-Merge
     }
   }
 </script>
