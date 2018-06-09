@@ -97,9 +97,11 @@
       ...mapActions([
         'logoutUser',
         'toggleMessaging',
+        'clearRoute',
         'showAboutPage'
       ]),
       logout () {
+        this.clearRoute(true)
         this.logoutUser()
       },
       toggleMessages () {

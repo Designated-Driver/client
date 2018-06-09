@@ -51,7 +51,8 @@
     },
     methods: {
       ...mapActions([
-        'updateRiderName'
+        'updateRiderName',
+        'setRouteToRider'
       ]),
       clickUser: function () {
         this.toolbar.showToolbar = false
@@ -66,7 +67,8 @@
         this.toolbar.showMessaging = true
       },
       clickAccept: function () {
-        this.updateRiderName('Ice Poseidon')
+        this.updateRiderName()
+        this.setRouteToRider()
         this.toolbar.showToolbar = false
         this.toolbar.showAccept = true
       },

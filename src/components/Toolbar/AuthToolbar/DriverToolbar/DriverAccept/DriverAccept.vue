@@ -17,6 +17,7 @@
       </div>
       <div class="main-buttons">
         <div @click="acceptRide" class="accept-button">Accept</div>
+        <div @click="continueRide" class="continue-button">Continue</div>
         <div @click="clearRide" class="clear-button">Done</div>
       </div>
     </div>
@@ -30,6 +31,7 @@
     name: 'DriverAccept',
     computed: {
       ...mapGetters([
+        'getEndLocation',
         'getTripCost',
         'getRiderName'
       ])
@@ -45,8 +47,8 @@
         'updateCurrentlyOnTrip'
       ]),
       acceptRide: function () {
-        this.setRouteToRider()
         this.generateRoute(true)
+        this.setRouteToDestination()
         this.updateTripCost(null)
         this.updateCurrentlyOnTrip(true)
         axios.get(`http://localhost:8081/acceptRide`, {
@@ -55,14 +57,19 @@
           }
         }).then(response => {
           console.log(response)
-          this.$emit('closeToolbar')
         }).catch(err => {
           console.log(err)
         })
-        this.setRouteToDestination()
+      },
+      continueRide: function () {
+        this.clearRoute(true).then(() => {
+          this.generateRoute(true)
+        })
       },
       clearRide: function () {
-        this.clearRoute()
+        this.clearRoute(true).then(() => {
+          this.$emit('closeToolbar')
+        })
       }
     }
   }
@@ -79,8 +86,6 @@
   .main-content {
     width: 85%;
     height: 100%;
-    grid-template-areas:
-    "info" "abutton";
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,10 +96,6 @@
       height: 50%;
       display: flex;
       grid-area: info;
-      grid-template-areas:
-      "nameSpace"
-      "time"
-      "question";
       flex-direction: column;
 
       .rider-name {
@@ -103,8 +104,8 @@
         display: flex;
         align-items: center;
         grid-area: nameSpace;
-      }
 
+      }
       .rider-location {
         width: 100%;
         height: 30%;
@@ -123,18 +124,19 @@
     }
 
     .main-buttons {
-      display: flex;
+      display: grid;
       justify-content: center;
       align-items: center;
-      height: 80px;
+      height: 100px;
       grid-area: abutton;
       grid-template-areas:
       "acceptb"
+      "continueb"
       "clearb";
-      flex-direction: column;
+      grid-row-gap: 10px;
 
       .accept-button {
-        width: 150px;
+        width: 100px;
         height: 80%;
         background:green;
         color: white;
@@ -144,8 +146,19 @@
         justify-content: center;
         align-items: center;
       }
+      .continue-button {
+        width: 100px;
+        height: 80%;
+        background:green;
+        color: white;
+        border-radius: 5px;
+        display: flex;
+        grid-area: continueb;
+        justify-content: center;
+        align-items: center;
+      }
       .clear-button {
-        width: 150px;
+        width: 100px;
         height: 80%;
         background:green;
         color: white;

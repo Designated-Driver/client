@@ -31,6 +31,7 @@
       return {
         mapData: {
           currentPosition: {lat: 36.968965, lng: -122.025568},
+          mapRef: null,
           showMarkers: true,
           mapCenter: null
         },
@@ -242,7 +243,7 @@
       ...mapGetters([
         'getStartLocation',
         'getEndLocation',
-        'getClearRoute',
+        'getClearedRoute',
         'getGenerateRoute',
         'getCurrentlyOnTrip'
       ])
@@ -271,12 +272,22 @@
           }.bind(this))
         }
       },
+      'getClearedRoute': {
+        handler: function (after, before) {
+          if (after) {
+            console.log('here')
+            this.mapData.mapRef.setMap(null)
+            this.clearRoute(false)
+          }
+        }
+      },
       'getGenerateRoute': {
         handler: function (after, before) {
           if (after) {
             var directionsService = new window.google.maps.DirectionsService()
             var directionsDisplay = new window.google.maps.DirectionsRenderer()
             directionsDisplay.setMap(this.$refs.map.$mapObject)
+            this.mapData.mapRef = directionsDisplay
             
             var destination = this.getEndLocation
             var origin = this.mapData.currentPosition
@@ -306,6 +317,7 @@
       ...mapActions([
         'updateStartLocation',
         'updateTripCost',
+        'clearRoute',
         'generateRoute'
       ]),
       getlocation () {

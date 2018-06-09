@@ -59,7 +59,7 @@ export default {
   getGenerateRoute: function (state) {
     return state.generateRoute
   },
-  getClearRoute: function (state) {
+  getClearedRoute: function (state) {
     return state.clearedRoute
   },
   getCurrentlyOnTrip: function (state) {

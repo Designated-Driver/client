@@ -126,7 +126,8 @@ export default {
     firebase.database().ref('rides').once('value').then(snapshot => {
       var newArray = Object.values(snapshot.val())
       newArray.forEach(element => {
-        commit('MUTATE_END_LOCATION', element.dropOffLocation)
+        commit('MUTATE_END_LOCATION', element.riderLocation)
+        console.log(element.riderLocation)
       })
     })
   },
@@ -136,6 +137,7 @@ export default {
       newArray.forEach(element => {
         commit('MUTATE_START_LOCATION', element.riderLocation)
         commit('MUTATE_END_LOCATION', element.dropOffLocation)
+        console.log(element.dropOffLocation)
       })
       firebase.database().ref(`/rides`).remove()
     })
@@ -152,8 +154,13 @@ export default {
           })
       })
   },
-  updateRiderName ({commit, dispatch, state}, val) {
-    commit('MUTATE_RIDER_NAME', val)
+  updateRiderName ({commit, dispatch, state}) {
+    firebase.database().ref('rides').once('value').then(snapshot => {
+      var newArray = Object.values(snapshot.val())
+      newArray.forEach(element => {
+        commit('MUTATE_RIDER_NAME', element.name)
+      })
+    })
   },
   updateDatabasePosition ({commit, dispatch, state}, lat, lon) {
     commit('MUTATE_LATITUDE', lat)
@@ -171,8 +178,8 @@ export default {
   generateRoute ({commit, dispatch, state}, val) {
     commit('MUTATE_GENERATE_ROUTE', val)
   },
-  clearRoute ({commit, dispatch, state}, val) {
-    commit('MUTATE_CLEAR_ROUTE', val)
+  clearRoute: function ({commit, dispatch, state}, val) {
+    commit('MUTATE_CLEARED_ROUTE', val)
   },
   updateCurrentlyOnTrip ({commit, dispatch, state}, val) {
     commit('MUTATE_CURRENLY_ON_TRIP', val)

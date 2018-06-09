@@ -15,7 +15,7 @@ export default {
     ID: null,
     chatLink: null
   },
-  riderName: 'Fred',
+  riderName: 'Bob',
   showAboutPage: false,
   startLocation: {lat: 36.968965, lng: -122.025568},
   endLocation: null,
